@@ -1,0 +1,14 @@
+D:\studia\JAproj\OperacjeMorfologiczne\bin\Debug\OperacjeMorfologiczne.exe.config
+D:\studia\JAproj\OperacjeMorfologiczne\bin\Debug\OperacjeMorfologiczne.exe
+D:\studia\JAproj\OperacjeMorfologiczne\bin\Debug\OperacjeMorfologiczne.pdb
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.csprojAssemblyReference.cache
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\MainWindow.g.cs
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\App.g.cs
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne_MarkupCompile.cache
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne_MarkupCompile.lref
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\MainWindow.baml
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.g.resources
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.Properties.Resources.resources
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.csproj.GenerateResource.cache
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.exe
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.pdb
