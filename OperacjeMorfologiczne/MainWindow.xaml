@@ -14,10 +14,11 @@
         <!--
         </Border>
         -->
-        <Image HorizontalAlignment="Left" Height="225" Margin="400,80,0,0" VerticalAlignment="Top" Width="300"/>
-        <Button Name="DodajObraz" Margin="155,24,537.6,421.4" Click="DodajObraz_OnClick" >Dodaj obraz</Button>
+        <Image Name="TranformedImage" HorizontalAlignment="Left" Height="225" Margin="400,80,0,0" VerticalAlignment="Top" Width="300"/>
+        <Button Name="DodajObraz" Margin="155,10,537.6,421.4" Click="DodajObraz_OnClick" >Dodaj obraz</Button>
         <Label Content="Oryginalny obraz" HorizontalAlignment="Left" Margin="155,49,0,0" VerticalAlignment="Top"/>
         <Label Content="Przetworzony obraz" HorizontalAlignment="Left" Margin="509,49,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="TransformObraz" Margin="509,10,169.6,421.4" Click="TransformObraz_OnClick"  Content="Przetwórz obraz" />
 
     </Grid>
 </Window>
