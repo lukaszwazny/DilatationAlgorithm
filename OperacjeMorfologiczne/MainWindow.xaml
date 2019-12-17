@@ -10,15 +10,42 @@
         <!--
         <Border BorderThickness="3" BorderBrush="#FF000000">
             -->
-            <Image Name="OriginalImage" HorizontalAlignment="Left" Height="225" Margin="50,80,0,0" VerticalAlignment="Top" Width="300"/>
+        <Image Name="OriginalImage" HorizontalAlignment="Left" Height="225" Margin="50,80,0,0" VerticalAlignment="Top" Width="300"/>
         <!--
         </Border>
         -->
-        <Image Name="TranformedImage" HorizontalAlignment="Left" Height="225" Margin="400,80,0,0" VerticalAlignment="Top" Width="300"/>
+        <Image Name="TranformedImage" HorizontalAlignment="Left" Height="225" Margin="400,80,0,0" VerticalAlignment="Top" Width="300" />
         <Button Name="DodajObraz" Margin="155,10,537.6,421.4" Click="DodajObraz_OnClick" >Dodaj obraz</Button>
         <Label Content="Oryginalny obraz" HorizontalAlignment="Left" Margin="155,49,0,0" VerticalAlignment="Top"/>
         <Label Content="Przetworzony obraz" HorizontalAlignment="Left" Margin="509,49,0,0" VerticalAlignment="Top"/>
         <Button x:Name="TransformObraz" Margin="509,10,169.6,421.4" Click="TransformObraz_OnClick"  Content="Przetwórz obraz" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="121,362,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="28"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="121,400,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="28"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="260,365,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="32"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="260,403,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="32"/>
+        <Label Content="Element strukturalny:" HorizontalAlignment="Left" Margin="50,327,0,0" VerticalAlignment="Top"/>
+        <Label Content="Wysokość:" HorizontalAlignment="Left" Margin="50,358,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label Content="Szerokość:" HorizontalAlignment="Left" Margin="50,396,0,0" VerticalAlignment="Top" Height="23"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="50,327,0,0" VerticalAlignment="Top" Width="122"/>
+        <Label Content="Punkt centralny:" HorizontalAlignment="Left" Margin="233,327,0,0" VerticalAlignment="Top"/>
+        <Label Content="X: " HorizontalAlignment="Left" Margin="233,362,0,0" VerticalAlignment="Top"/>
+        <Label Content="Y: " HorizontalAlignment="Left" Margin="233,400,0,0" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="228,327,0,0" VerticalAlignment="Top" Width="122"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="514,366,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="59"/>
+        <Label Content="Wątki:" HorizontalAlignment="Left" Margin="405,327,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ile ma być: " HorizontalAlignment="Left" Margin="405,362,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ile ma procesor: " HorizontalAlignment="Left" Margin="405,399,0,0" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="400,327,0,0" VerticalAlignment="Top" Width="193"/>
+        <TextBlock Name="threads" HorizontalAlignment="Left" Margin="514,405,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top"/>
+        <Label Content="Pomiar szybkości:" HorizontalAlignment="Left" Margin="656,335,0,0" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="106" Margin="640,327,0,0" VerticalAlignment="Top" Width="131">
+            <TextBlock Name="speed" TextWrapping="Wrap" Text="" Margin="37.2,44.2,32.4,33.8"/>
+        </Border>
+        <RadioButton IsChecked="True" Content="C" HorizontalAlignment="Left" Margin="322,40,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="Assembler" HorizontalAlignment="Left" Margin="362,40,0,0" VerticalAlignment="Top"/>
+        <Label Content="Wybór biblioteki:" HorizontalAlignment="Left" Margin="322,9,0,0" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="54" Margin="317,9,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="Save" Margin="705,172,9.6,265.4" Click="Save_OnClick"  Content="Zapisz" />
 
     </Grid>
 </Window>
