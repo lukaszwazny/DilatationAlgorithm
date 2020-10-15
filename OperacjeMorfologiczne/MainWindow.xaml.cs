@@ -18,6 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Drawing;
+using Color = System.Drawing.Color;
 using Path = System.IO.Path;
 
 namespace OperacjeMorfologiczne
@@ -30,8 +32,7 @@ namespace OperacjeMorfologiczne
         private BitmapImage _originalImage;
         private BitmapImage _transformedImage;
 
-        [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\c_function\CFunction.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr dilatation(IntPtr image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY);
+
 
         public MainWindow()
         {
@@ -41,46 +42,107 @@ namespace OperacjeMorfologiczne
 
         private void DodajObraz_OnClick(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            _originalImage = new BitmapImage(new Uri(openFileDialog.FileName));
-            OriginalImage.Source = _originalImage;
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.ShowDialog();
+                _originalImage = new BitmapImage(new Uri(openFileDialog.FileName));
+                OriginalImage.Source = _originalImage;
+            }
+            catch (Exception XD)
+            {
+                MessageBox.Show(XD.Message, XD.GetType().ToString());
+            }
+            
         }
 
         private void TransformObraz_OnClick(object sender, RoutedEventArgs e)
         {
-            //preparing image
-            byte[] imageBytes = Converter.BitmapImageToBytes(_originalImage);
-            int size = Converter.GetBytesSize(imageBytes);
-            IntPtr imagePtr = Converter.BitmapImageToIntPtr(_originalImage);
-            int width = Converter.GetWidth(_originalImage);
-            int height = Converter.GetHeight(_originalImage);
-            //pomiar czasu
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            //operation
-            IntPtr transformedIntPtrBytes = dilatation(imagePtr, width, height, 3, 3, 1, 1); 
-            watch.Stop();
-            speed.Text = ((((double)watch.ElapsedTicks)/((double)Stopwatch.Frequency))*1000*1000) + " \u00b5s";
-            //displaying
-            BitmapImage transformedImage = Converter.IntPtrToBitmapImage(transformedIntPtrBytes, size);
-            _transformedImage = transformedImage;
-//            BitmapSource transformedImage = MakeBitmapSource.FromNativePointer(transformedIntPtrBytes,
-//                width, height, 1);
-//            _transformedImage = Converter.BitmapSourceToBitmapImage(transformedImage);
-            TranformedImage.Source = transformedImage;
+            try
+            {
+                //validation
+                new Validate(Int32.Parse(ElemWidth.Text), Int32.Parse(ElemHeight.Text), Int32.Parse(CentrPntX.Text), Int32.Parse(CentrPntY.Text)).validate();
+                //preparing image
+                //byte[] imageBytes = Converter.BitmapImageToBytes(_originalImage);
+                //            Bitmap bitmap = Converter.BitmapImage2Bitmap(_originalImage);
+                //            byte[] imageBytes = Converter.BitmapToBytes(bitmap);
+                //            byte[] imageHeader = Converter.GetHeader(_originalImage);
+                int size = Converter.GetSize(_originalImage);
+                int width = _originalImage.PixelWidth;
+                int height = _originalImage.PixelHeight;
+                //            IntPtr imagePtr = Converter.BitmapImageToIntPtr(_originalImage);
+
+                Params parameters = new Params(
+                    width,
+                    height,
+                    Int32.Parse(ElemWidth.Text),
+                    Int32.Parse(ElemHeight.Text),
+                    Int32.Parse(CentrPntX.Text),
+                    Int32.Parse(CentrPntY.Text),
+                    Int32.Parse(Threads.Text),
+                    AsmButton.IsChecked
+                );
+
+
+//                List<ThreadsManaging.IntPtrWithSize> intPtrs = ThreadsManaging.SplitImage(_originalImage, 10);
+//                BitmapImage hejBitmapImage = ThreadsManaging.MergeImage(intPtrs, height);
+//                IntPtr imagePtr = Converter.BitmapImageToIntPtr(hejBitmapImage);
+//            int width = Converter.GetWidth(_originalImage);
+//            int height = Converter.GetHeight(_originalImage);
+
+                ThreadsManaging action = new ThreadsManaging(_originalImage, parameters);
+
+                //pomiar czasu
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                //operation
+                action.start();
+//                IntPtr transformedIntPtrBytes = dilatation(imagePtr, width, height, Int32.Parse(ElemWidth.Text),
+//                    Int32.Parse(ElemHeight.Text), Int32.Parse(CentrPntX.Text), Int32.Parse(CentrPntY.Text));
+                watch.Stop();
+                speed.Text = ((((double) watch.ElapsedTicks) / ((double) Stopwatch.Frequency)) * 1000 * 1000) +
+                             " \u00b5s";
+                //displaying
+                //            BitmapImage transformedImage = Converter.IntPtrToBitmapImage(transformedIntPtrBytes, size, imageHeader);
+                //            _transformedImage = transformedImage;
+                //            BitmapSource transformedImage = MakeBitmapSource.FromNativePointer(transformedIntPtrBytes,
+                //                width, height, 1);
+                //            _transformedImage = Converter.BitmapSourceToBitmapImage(transformedImage);
+                //            byte[] tranformedBytes = Converter.IntPtrToBytes(transformedIntPtrBytes, size);
+                //            Bitmap transformedBitmap = Converter.BytesToBitmap(tranformedBytes, width, height);
+                //BitmapImage transformedImage =
+                    //Converter.IntPtrToBitmapImage(transformedIntPtrBytes, size, width, height);
+
+                BitmapImage transformedImage = action.GetResult();
+
+                _transformedImage = transformedImage;
+                TranformedImage.Source = transformedImage;
+            }
+            catch (Exception XD)
+            {
+                MessageBox.Show(XD.Message, XD.GetType().ToString());
+            }
             
+
         }
 
         private void Save_OnClick(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            try
             {
-                Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif"
-            };
-            saveFileDialog.ShowDialog();
-            Uri uri = new Uri(saveFileDialog.FileName);
-            SaveImage(_transformedImage, uri.AbsolutePath);
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "PNG Image|*.png|JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif"
+                };
+                saveFileDialog.ShowDialog();
+                Uri uri = new Uri(saveFileDialog.FileName);
+                SaveImage(_transformedImage, uri.AbsolutePath);
+            }
+            catch (Exception XD)
+            {
+                MessageBox.Show(XD.Message, XD.GetType().ToString());
+            }
+           
 
         }
 
@@ -95,5 +157,29 @@ namespace OperacjeMorfologiczne
             }
         }
 
+    }
+
+    struct Params
+    {
+        public int ImageWidth;
+        public int ImageHeight;
+        public int ElemWidth;
+        public int ElemHeight;
+        public int CentrPntX;
+        public int CentrPntY;
+        public int NrOfThreads;
+        public bool? Function;      //0 for C, 1 for Asm
+
+        public Params(int imageWidth, int imageHeight, int elemWidth, int elemHeiht, int centrPntX, int centrPntY, int nrOfThreads, bool? function)
+        {
+            ImageWidth = imageWidth;
+            ImageHeight = imageHeight;
+            ElemWidth = elemWidth;
+            ElemHeight = elemHeiht;
+            CentrPntX = centrPntX;
+            CentrPntY = centrPntY;
+            NrOfThreads = nrOfThreads;
+            Function = function;
+        }
     }
 }
