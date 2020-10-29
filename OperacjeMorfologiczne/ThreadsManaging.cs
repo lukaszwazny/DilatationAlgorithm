@@ -59,15 +59,21 @@ namespace OperacjeMorfologiczne
             try
             {
                 ImageWithIndex im = (ImageWithIndex) image;
-                IntPtr tranformedImage = dilatation(im.image, im.width, parameters.ImageHeight,
+                //IntPtr transformedImage = Marshal.AllocHGlobal(im.image);
+                IntPtr transformedImage = dilatation(im.image, im.width, parameters.ImageHeight,
                     parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
-                this.transformedImages[im.index] = tranformedImage;
-                //Marshal.FreeHGlobal(im.image);
+                this.transformedImages[im.index] = transformedImage;
+                Marshal.FreeHGlobal(im.image);
+            }
+            catch (AccessViolationException error)
+            {
+                MessageBox.Show("Wątek nr " + Thread.CurrentThread.Name + ": " + error.Message, error.GetType().ToString());
             }
             catch (Exception XD)
             {
                 MessageBox.Show("Wątek nr " + Thread.CurrentThread.Name + ": " + XD.Message, XD.GetType().ToString());
             }
+            
 
         }
 

@@ -84,11 +84,22 @@ namespace OperacjeMorfologiczne
                 );
 
 
-//                List<ThreadsManaging.IntPtrWithSize> intPtrs = ThreadsManaging.SplitImage(_originalImage, 10);
-//                BitmapImage hejBitmapImage = ThreadsManaging.MergeImage(intPtrs, height);
-//                IntPtr imagePtr = Converter.BitmapImageToIntPtr(hejBitmapImage);
-//            int width = Converter.GetWidth(_originalImage);
-//            int height = Converter.GetHeight(_originalImage);
+                //sprawdzenie rozdzielenia i połączenia od razu
+                /*List<ThreadsManaging.IntPtrWithSize> intPtrs = ThreadsManaging.SplitImage(_originalImage, Int32.Parse(Threads.Text));
+                BitmapImage hejBitmapImage = ThreadsManaging.MergeImage(intPtrs, height);
+                //IntPtr imagePtr = Converter.BitmapImageToIntPtr(hejBitmapImage);
+                //int width = Converter.GetWidth(_originalImage);
+                //int height = Converter.GetHeight(_originalImage);
+                _transformedImage = hejBitmapImage;
+                TranformedImage.Source = hejBitmapImage;
+                return;*/
+
+                //sprawdzanie podziału
+                /*List<ThreadsManaging.IntPtrWithSize> intPtrs = ThreadsManaging.SplitImage(_originalImage, Int32.Parse(Threads.Text));
+                OriginalImage_Copy.Source = Converter.IntPtrToBitmapImage(intPtrs[0].GetPtr(), intPtrs[0].GetSize(), intPtrs[0].GetWidth(), 10);
+                OriginalImage_Copy1.Source = Converter.IntPtrToBitmapImage(intPtrs[1].GetPtr(), intPtrs[1].GetSize(), intPtrs[1].GetWidth(), 10);
+                OriginalImage_Copy2.Source = Converter.IntPtrToBitmapImage(intPtrs[2].GetPtr(), intPtrs[2].GetSize(), intPtrs[2].GetWidth(), 10);
+                return;*/
 
                 ThreadsManaging action = new ThreadsManaging(_originalImage, parameters);
 

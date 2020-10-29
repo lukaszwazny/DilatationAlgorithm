@@ -1,8 +1,8 @@
 #include "c_function.h"
 
-EXPORT unsigned char* dilatation(const unsigned char* image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY){
+EXPORT unsigned char* dilatationC(const unsigned char* image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY){
     
-    unsigned char* buffer = (unsigned char*)malloc(imageWidth*imageWidth * sizeof(unsigned char));
+    unsigned char* buffer = (unsigned char*)malloc(imageHeight*imageWidth * sizeof(unsigned char));
 
     //kopiuję dane z image do bufora
 	for (int j = 0; j < imageHeight - 1; j++)
