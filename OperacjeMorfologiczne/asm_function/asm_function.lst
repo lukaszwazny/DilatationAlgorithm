@@ -1,0 +1,33 @@
+Microsoft (R) Macro Assembler (x64) Version 14.24.28314.0   11/04/20 20:11:43
+asm_function.asm					     Page 1 - 1
+
+
+ 00000000			.data
+
+ 00000000			.code
+
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+				;Funkcja wykonuje algorytm dylatacji
+				;
+				; @param rcx - wskaŸnik na tablicê pikseli obrazu Ÿród³owego
+				;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 00000000			dilatationAsm PROC
+ 00000000  48/ 8B C1			mov rax, rcx
+ 00000003  C3				ret 
+ 00000004			dilatationAsm ENDP
+
+				end
+Microsoft (R) Macro Assembler (x64) Version 14.24.28314.0   11/04/20 20:11:43
+asm_function.asm					     Symbols 2 - 1
+
+
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+dilatationAsm  . . . . . . . . .	P 	 00000000 _TEXT	Length= 00000004 Public
+
+	   0 Warnings
+	   0 Errors

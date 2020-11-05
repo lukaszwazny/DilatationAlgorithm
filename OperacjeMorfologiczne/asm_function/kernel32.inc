@@ -1,0 +1,2117 @@
+EXTERNDEF AcquireSRWLockExclusive:PROC
+EXTERNDEF AcquireSRWLockShared:PROC
+EXTERNDEF ActivateActCtx:PROC
+EXTERNDEF ActivateActCtxWorker:PROC
+EXTERNDEF AddAtomA:PROC
+AddAtom EQU <AddAtomA>
+
+EXTERNDEF AddAtomW:PROC
+EXTERNDEF AddConsoleAliasA:PROC
+AddConsoleAlias EQU <AddConsoleAliasA>
+
+EXTERNDEF AddConsoleAliasW:PROC
+EXTERNDEF AddDllDirectory:PROC
+EXTERNDEF AddIntegrityLabelToBoundaryDescriptor:PROC
+EXTERNDEF AddLocalAlternateComputerNameA:PROC
+AddLocalAlternateComputerName EQU <AddLocalAlternateComputerNameA>
+
+EXTERNDEF AddLocalAlternateComputerNameW:PROC
+EXTERNDEF AddRefActCtx:PROC
+EXTERNDEF AddRefActCtxWorker:PROC
+EXTERNDEF AddResourceAttributeAce:PROC
+EXTERNDEF AddSIDToBoundaryDescriptor:PROC
+EXTERNDEF AddScopedPolicyIDAce:PROC
+EXTERNDEF AddSecureMemoryCacheCallback:PROC
+EXTERNDEF AddVectoredContinueHandler:PROC
+EXTERNDEF AddVectoredExceptionHandler:PROC
+EXTERNDEF AdjustCalendarDate:PROC
+EXTERNDEF AllocConsole:PROC
+EXTERNDEF AllocateUserPhysicalPages:PROC
+EXTERNDEF AllocateUserPhysicalPagesNuma:PROC
+EXTERNDEF AppPolicyGetClrCompat:PROC
+EXTERNDEF AppPolicyGetCreateFileAccess:PROC
+EXTERNDEF AppPolicyGetLifecycleManagement:PROC
+EXTERNDEF AppPolicyGetMediaFoundationCodecLoading:PROC
+EXTERNDEF AppPolicyGetProcessTerminationMethod:PROC
+EXTERNDEF AppPolicyGetShowDeveloperDiagnostic:PROC
+EXTERNDEF AppPolicyGetThreadInitializationType:PROC
+EXTERNDEF AppPolicyGetWindowingModel:PROC
+EXTERNDEF AppXGetOSMaxVersionTested:PROC
+EXTERNDEF ApplicationRecoveryFinished:PROC
+EXTERNDEF ApplicationRecoveryInProgress:PROC
+EXTERNDEF AreFileApisANSI:PROC
+EXTERNDEF AssignProcessToJobObject:PROC
+EXTERNDEF AttachConsole:PROC
+EXTERNDEF BackupRead:PROC
+EXTERNDEF BackupSeek:PROC
+EXTERNDEF BackupWrite:PROC
+EXTERNDEF BaseCheckAppcompatCache:PROC
+EXTERNDEF BaseCheckAppcompatCacheEx:PROC
+EXTERNDEF BaseCheckAppcompatCacheExWorker:PROC
+EXTERNDEF BaseCheckAppcompatCacheWorker:PROC
+EXTERNDEF BaseCheckElevation:PROC
+EXTERNDEF BaseCleanupAppcompatCacheSupport:PROC
+EXTERNDEF BaseCleanupAppcompatCacheSupportWorker:PROC
+EXTERNDEF BaseDestroyVDMEnvironment:PROC
+EXTERNDEF BaseDllReadWriteIniFile:PROC
+EXTERNDEF BaseDumpAppcompatCache:PROC
+EXTERNDEF BaseDumpAppcompatCacheWorker:PROC
+EXTERNDEF BaseElevationPostProcessing:PROC
+EXTERNDEF BaseFlushAppcompatCache:PROC
+EXTERNDEF BaseFlushAppcompatCacheWorker:PROC
+EXTERNDEF BaseFormatObjectAttributes:PROC
+EXTERNDEF BaseFormatTimeOut:PROC
+EXTERNDEF BaseFreeAppCompatDataForProcessWorker:PROC
+EXTERNDEF BaseGenerateAppCompatData:PROC
+EXTERNDEF BaseGetNamedObjectDirectory:PROC
+EXTERNDEF BaseInitAppcompatCacheSupport:PROC
+EXTERNDEF BaseInitAppcompatCacheSupportWorker:PROC
+EXTERNDEF BaseIsAppcompatInfrastructureDisabled:PROC
+EXTERNDEF BaseIsAppcompatInfrastructureDisabledWorker:PROC
+EXTERNDEF BaseIsDosApplication:PROC
+EXTERNDEF BaseQueryModuleData:PROC
+EXTERNDEF BaseReadAppCompatDataForProcessWorker:PROC
+EXTERNDEF BaseSetLastNTError:PROC
+EXTERNDEF BaseThreadInitThunk:PROC
+EXTERNDEF BaseUpdateAppcompatCache:PROC
+EXTERNDEF BaseUpdateAppcompatCacheWorker:PROC
+EXTERNDEF BaseUpdateVDMEntry:PROC
+EXTERNDEF BaseVerifyUnicodeString:PROC
+EXTERNDEF BaseWriteErrorElevationRequiredEvent:PROC
+EXTERNDEF Basep8BitStringToDynamicUnicodeString:PROC
+EXTERNDEF BasepAllocateActivationContextActivationBlock:PROC
+EXTERNDEF BasepAnsiStringToDynamicUnicodeString:PROC
+EXTERNDEF BasepAppContainerEnvironmentExtension:PROC
+EXTERNDEF BasepAppXExtension:PROC
+EXTERNDEF BasepCheckAppCompat:PROC
+EXTERNDEF BasepCheckWebBladeHashes:PROC
+EXTERNDEF BasepCheckWinSaferRestrictions:PROC
+EXTERNDEF BasepConstructSxsCreateProcessMessage:PROC
+EXTERNDEF BasepCopyEncryption:PROC
+EXTERNDEF BasepFinishPackageActivationForSxS:PROC
+EXTERNDEF BasepFreeActivationContextActivationBlock:PROC
+EXTERNDEF BasepFreeAppCompatData:PROC
+EXTERNDEF BasepGetAppCompatData:PROC
+EXTERNDEF BasepGetComputerNameFromNtPath:PROC
+EXTERNDEF BasepGetExeArchType:PROC
+EXTERNDEF BasepGetPackageActivationTokenForSxS:PROC
+EXTERNDEF BasepInitAppCompatData:PROC
+EXTERNDEF BasepIsProcessAllowed:PROC
+EXTERNDEF BasepMapModuleHandle:PROC
+EXTERNDEF BasepNotifyLoadStringResource:PROC
+EXTERNDEF BasepPostSuccessAppXExtension:PROC
+EXTERNDEF BasepProcessInvalidImage:PROC
+EXTERNDEF BasepQueryAppCompat:PROC
+EXTERNDEF BasepQueryModuleChpeSettings:PROC
+EXTERNDEF BasepReleaseAppXContext:PROC
+EXTERNDEF BasepReleaseSxsCreateProcessUtilityStruct:PROC
+EXTERNDEF BasepReportFault:PROC
+EXTERNDEF BasepSetFileEncryptionCompression:PROC
+EXTERNDEF Beep:PROC
+EXTERNDEF BeginUpdateResourceA:PROC
+BeginUpdateResource EQU <BeginUpdateResourceA>
+
+EXTERNDEF BeginUpdateResourceW:PROC
+EXTERNDEF BindIoCompletionCallback:PROC
+EXTERNDEF BuildCommDCBA:PROC
+BuildCommDCB EQU <BuildCommDCBA>
+
+EXTERNDEF BuildCommDCBAndTimeoutsA:PROC
+BuildCommDCBAndTimeouts EQU <BuildCommDCBAndTimeoutsA>
+
+EXTERNDEF BuildCommDCBAndTimeoutsW:PROC
+EXTERNDEF BuildCommDCBW:PROC
+EXTERNDEF CallNamedPipeA:PROC
+CallNamedPipe EQU <CallNamedPipeA>
+
+EXTERNDEF CallNamedPipeW:PROC
+EXTERNDEF CallbackMayRunLong:PROC
+EXTERNDEF CancelDeviceWakeupRequest:PROC
+EXTERNDEF CancelIo:PROC
+EXTERNDEF CancelIoEx:PROC
+EXTERNDEF CancelSynchronousIo:PROC
+EXTERNDEF CancelThreadpoolIo:PROC
+EXTERNDEF CancelTimerQueueTimer:PROC
+EXTERNDEF CancelWaitableTimer:PROC
+EXTERNDEF CeipIsOptedIn:PROC
+EXTERNDEF ChangeTimerQueueTimer:PROC
+EXTERNDEF CheckAllowDecryptedRemoteDestinationPolicy:PROC
+EXTERNDEF CheckElevation:PROC
+EXTERNDEF CheckElevationEnabled:PROC
+EXTERNDEF CheckForReadOnlyResource:PROC
+EXTERNDEF CheckForReadOnlyResourceFilter:PROC
+EXTERNDEF CheckIsMSIXPackage:PROC
+EXTERNDEF CheckNameLegalDOS8Dot3A:PROC
+CheckNameLegalDOS8Dot3 EQU <CheckNameLegalDOS8Dot3A>
+
+EXTERNDEF CheckNameLegalDOS8Dot3W:PROC
+EXTERNDEF CheckRemoteDebuggerPresent:PROC
+EXTERNDEF CheckTokenCapability:PROC
+EXTERNDEF CheckTokenMembershipEx:PROC
+EXTERNDEF ClearCommBreak:PROC
+EXTERNDEF ClearCommError:PROC
+EXTERNDEF CloseConsoleHandle:PROC
+EXTERNDEF CloseHandle:PROC
+EXTERNDEF ClosePackageInfo:PROC
+EXTERNDEF ClosePrivateNamespace:PROC
+EXTERNDEF CloseProfileUserMapping:PROC
+EXTERNDEF ClosePseudoConsole:PROC
+EXTERNDEF CloseState:PROC
+EXTERNDEF CloseThreadpool:PROC
+EXTERNDEF CloseThreadpoolCleanupGroup:PROC
+EXTERNDEF CloseThreadpoolCleanupGroupMembers:PROC
+EXTERNDEF CloseThreadpoolIo:PROC
+EXTERNDEF CloseThreadpoolTimer:PROC
+EXTERNDEF CloseThreadpoolWait:PROC
+EXTERNDEF CloseThreadpoolWork:PROC
+EXTERNDEF CmdBatNotification:PROC
+EXTERNDEF CommConfigDialogA:PROC
+CommConfigDialog EQU <CommConfigDialogA>
+
+EXTERNDEF CommConfigDialogW:PROC
+EXTERNDEF CompareCalendarDates:PROC
+EXTERNDEF CompareFileTime:PROC
+EXTERNDEF CompareStringA:PROC
+CompareString EQU <CompareStringA>
+
+EXTERNDEF CompareStringEx:PROC
+EXTERNDEF CompareStringOrdinal:PROC
+EXTERNDEF CompareStringW:PROC
+EXTERNDEF ConnectNamedPipe:PROC
+EXTERNDEF ConsoleMenuControl:PROC
+EXTERNDEF ContinueDebugEvent:PROC
+EXTERNDEF ConvertCalDateTimeToSystemTime:PROC
+EXTERNDEF ConvertDefaultLocale:PROC
+EXTERNDEF ConvertFiberToThread:PROC
+EXTERNDEF ConvertNLSDayOfWeekToWin32DayOfWeek:PROC
+EXTERNDEF ConvertSystemTimeToCalDateTime:PROC
+EXTERNDEF ConvertThreadToFiber:PROC
+EXTERNDEF ConvertThreadToFiberEx:PROC
+EXTERNDEF CopyContext:PROC
+EXTERNDEF CopyFile2:PROC
+EXTERNDEF CopyFileA:PROC
+CopyFile EQU <CopyFileA>
+
+EXTERNDEF CopyFileExA:PROC
+CopyFileEx EQU <CopyFileExA>
+
+EXTERNDEF CopyFileExW:PROC
+EXTERNDEF CopyFileTransactedA:PROC
+CopyFileTransacted EQU <CopyFileTransactedA>
+
+EXTERNDEF CopyFileTransactedW:PROC
+EXTERNDEF CopyFileW:PROC
+EXTERNDEF CopyLZFile:PROC
+EXTERNDEF CreateActCtxA:PROC
+CreateActCtx EQU <CreateActCtxA>
+
+EXTERNDEF CreateActCtxW:PROC
+EXTERNDEF CreateActCtxWWorker:PROC
+EXTERNDEF CreateBoundaryDescriptorA:PROC
+CreateBoundaryDescriptor EQU <CreateBoundaryDescriptorA>
+
+EXTERNDEF CreateBoundaryDescriptorW:PROC
+EXTERNDEF CreateConsoleScreenBuffer:PROC
+EXTERNDEF CreateDirectoryA:PROC
+CreateDirectory EQU <CreateDirectoryA>
+
+EXTERNDEF CreateDirectoryExA:PROC
+CreateDirectoryEx EQU <CreateDirectoryExA>
+
+EXTERNDEF CreateDirectoryExW:PROC
+EXTERNDEF CreateDirectoryTransactedA:PROC
+CreateDirectoryTransacted EQU <CreateDirectoryTransactedA>
+
+EXTERNDEF CreateDirectoryTransactedW:PROC
+EXTERNDEF CreateDirectoryW:PROC
+EXTERNDEF CreateEnclave:PROC
+EXTERNDEF CreateEventA:PROC
+CreateEvent EQU <CreateEventA>
+
+EXTERNDEF CreateEventExA:PROC
+CreateEventEx EQU <CreateEventExA>
+
+EXTERNDEF CreateEventExW:PROC
+EXTERNDEF CreateEventW:PROC
+EXTERNDEF CreateFiber:PROC
+EXTERNDEF CreateFiberEx:PROC
+EXTERNDEF CreateFile2:PROC
+EXTERNDEF CreateFileA:PROC
+CreateFile EQU <CreateFileA>
+
+EXTERNDEF CreateFileMappingA:PROC
+CreateFileMapping EQU <CreateFileMappingA>
+
+EXTERNDEF CreateFileMappingFromApp:PROC
+EXTERNDEF CreateFileMappingNumaA:PROC
+CreateFileMappingNuma EQU <CreateFileMappingNumaA>
+
+EXTERNDEF CreateFileMappingNumaW:PROC
+EXTERNDEF CreateFileMappingW:PROC
+EXTERNDEF CreateFileTransactedA:PROC
+CreateFileTransacted EQU <CreateFileTransactedA>
+
+EXTERNDEF CreateFileTransactedW:PROC
+EXTERNDEF CreateFileW:PROC
+EXTERNDEF CreateHardLinkA:PROC
+CreateHardLink EQU <CreateHardLinkA>
+
+EXTERNDEF CreateHardLinkTransactedA:PROC
+CreateHardLinkTransacted EQU <CreateHardLinkTransactedA>
+
+EXTERNDEF CreateHardLinkTransactedW:PROC
+EXTERNDEF CreateHardLinkW:PROC
+EXTERNDEF CreateIoCompletionPort:PROC
+EXTERNDEF CreateJobObjectA:PROC
+CreateJobObject EQU <CreateJobObjectA>
+
+EXTERNDEF CreateJobObjectW:PROC
+EXTERNDEF CreateJobSet:PROC
+EXTERNDEF CreateMailslotA:PROC
+CreateMailslot EQU <CreateMailslotA>
+
+EXTERNDEF CreateMailslotW:PROC
+EXTERNDEF CreateMemoryResourceNotification:PROC
+EXTERNDEF CreateMutexA:PROC
+CreateMutex EQU <CreateMutexA>
+
+EXTERNDEF CreateMutexExA:PROC
+CreateMutexEx EQU <CreateMutexExA>
+
+EXTERNDEF CreateMutexExW:PROC
+EXTERNDEF CreateMutexW:PROC
+EXTERNDEF CreateNamedPipeA:PROC
+CreateNamedPipe EQU <CreateNamedPipeA>
+
+EXTERNDEF CreateNamedPipeW:PROC
+EXTERNDEF CreatePipe:PROC
+EXTERNDEF CreatePrivateNamespaceA:PROC
+CreatePrivateNamespace EQU <CreatePrivateNamespaceA>
+
+EXTERNDEF CreatePrivateNamespaceW:PROC
+EXTERNDEF CreateProcessA:PROC
+CreateProcess EQU <CreateProcessA>
+
+EXTERNDEF CreateProcessAsUserA:PROC
+CreateProcessAsUser EQU <CreateProcessAsUserA>
+
+EXTERNDEF CreateProcessAsUserW:PROC
+EXTERNDEF CreateProcessInternalA:PROC
+CreateProcessInternal EQU <CreateProcessInternalA>
+
+EXTERNDEF CreateProcessInternalW:PROC
+EXTERNDEF CreateProcessW:PROC
+EXTERNDEF CreatePseudoConsole:PROC
+EXTERNDEF CreateRemoteThread:PROC
+EXTERNDEF CreateRemoteThreadEx:PROC
+EXTERNDEF CreateSemaphoreA:PROC
+CreateSemaphore EQU <CreateSemaphoreA>
+
+EXTERNDEF CreateSemaphoreExA:PROC
+CreateSemaphoreEx EQU <CreateSemaphoreExA>
+
+EXTERNDEF CreateSemaphoreExW:PROC
+EXTERNDEF CreateSemaphoreW:PROC
+EXTERNDEF CreateSocketHandle:PROC
+EXTERNDEF CreateSymbolicLinkA:PROC
+CreateSymbolicLink EQU <CreateSymbolicLinkA>
+
+EXTERNDEF CreateSymbolicLinkTransactedA:PROC
+CreateSymbolicLinkTransacted EQU <CreateSymbolicLinkTransactedA>
+
+EXTERNDEF CreateSymbolicLinkTransactedW:PROC
+EXTERNDEF CreateSymbolicLinkW:PROC
+EXTERNDEF CreateTapePartition:PROC
+EXTERNDEF CreateThread:PROC
+EXTERNDEF CreateThreadpool:PROC
+EXTERNDEF CreateThreadpoolCleanupGroup:PROC
+EXTERNDEF CreateThreadpoolIo:PROC
+EXTERNDEF CreateThreadpoolTimer:PROC
+EXTERNDEF CreateThreadpoolWait:PROC
+EXTERNDEF CreateThreadpoolWork:PROC
+EXTERNDEF CreateTimerQueue:PROC
+EXTERNDEF CreateTimerQueueTimer:PROC
+EXTERNDEF CreateToolhelp32Snapshot:PROC
+EXTERNDEF CreateWaitableTimerA:PROC
+CreateWaitableTimer EQU <CreateWaitableTimerA>
+
+EXTERNDEF CreateWaitableTimerExA:PROC
+CreateWaitableTimerEx EQU <CreateWaitableTimerExA>
+
+EXTERNDEF CreateWaitableTimerExW:PROC
+EXTERNDEF CreateWaitableTimerW:PROC
+EXTERNDEF CtrlRoutine:PROC
+EXTERNDEF DeactivateActCtx:PROC
+EXTERNDEF DeactivateActCtxWorker:PROC
+EXTERNDEF DebugActiveProcess:PROC
+EXTERNDEF DebugActiveProcessStop:PROC
+EXTERNDEF DebugBreak:PROC
+EXTERNDEF DebugBreakProcess:PROC
+EXTERNDEF DebugSetProcessKillOnExit:PROC
+EXTERNDEF DecodePointer:PROC
+EXTERNDEF DecodeSystemPointer:PROC
+EXTERNDEF DefineDosDeviceA:PROC
+DefineDosDevice EQU <DefineDosDeviceA>
+
+EXTERNDEF DefineDosDeviceW:PROC
+EXTERNDEF DelayLoadFailureHook:PROC
+EXTERNDEF DeleteAtom:PROC
+EXTERNDEF DeleteBoundaryDescriptor:PROC
+EXTERNDEF DeleteCriticalSection:PROC
+EXTERNDEF DeleteFiber:PROC
+EXTERNDEF DeleteFileA:PROC
+DeleteFile EQU <DeleteFileA>
+
+EXTERNDEF DeleteFileTransactedA:PROC
+DeleteFileTransacted EQU <DeleteFileTransactedA>
+
+EXTERNDEF DeleteFileTransactedW:PROC
+EXTERNDEF DeleteFileW:PROC
+EXTERNDEF DeleteProcThreadAttributeList:PROC
+EXTERNDEF DeleteSynchronizationBarrier:PROC
+EXTERNDEF DeleteTimerQueue:PROC
+EXTERNDEF DeleteTimerQueueEx:PROC
+EXTERNDEF DeleteTimerQueueTimer:PROC
+EXTERNDEF DeleteVolumeMountPointA:PROC
+DeleteVolumeMountPoint EQU <DeleteVolumeMountPointA>
+
+EXTERNDEF DeleteVolumeMountPointW:PROC
+EXTERNDEF DeviceIoControl:PROC
+EXTERNDEF DisableThreadLibraryCalls:PROC
+EXTERNDEF DisableThreadProfiling:PROC
+EXTERNDEF DisassociateCurrentThreadFromCallback:PROC
+EXTERNDEF DiscardVirtualMemory:PROC
+EXTERNDEF DisconnectNamedPipe:PROC
+EXTERNDEF DnsHostnameToComputerNameA:PROC
+DnsHostnameToComputerName EQU <DnsHostnameToComputerNameA>
+
+EXTERNDEF DnsHostnameToComputerNameExW:PROC
+EXTERNDEF DnsHostnameToComputerNameW:PROC
+EXTERNDEF DosDateTimeToFileTime:PROC
+EXTERNDEF DosPathToSessionPathA:PROC
+DosPathToSessionPath EQU <DosPathToSessionPathA>
+
+EXTERNDEF DosPathToSessionPathW:PROC
+EXTERNDEF DuplicateConsoleHandle:PROC
+EXTERNDEF DuplicateEncryptionInfoFileExt:PROC
+EXTERNDEF DuplicateHandle:PROC
+EXTERNDEF EnableThreadProfiling:PROC
+EXTERNDEF EncodePointer:PROC
+EXTERNDEF EncodeSystemPointer:PROC
+EXTERNDEF EndUpdateResourceA:PROC
+EndUpdateResource EQU <EndUpdateResourceA>
+
+EXTERNDEF EndUpdateResourceW:PROC
+EXTERNDEF EnterCriticalSection:PROC
+EXTERNDEF EnterSynchronizationBarrier:PROC
+EXTERNDEF EnumCalendarInfoA:PROC
+EnumCalendarInfo EQU <EnumCalendarInfoA>
+
+EXTERNDEF EnumCalendarInfoExA:PROC
+EnumCalendarInfoEx EQU <EnumCalendarInfoExA>
+
+EXTERNDEF EnumCalendarInfoExEx:PROC
+EXTERNDEF EnumCalendarInfoExW:PROC
+EXTERNDEF EnumCalendarInfoW:PROC
+EXTERNDEF EnumDateFormatsA:PROC
+EnumDateFormats EQU <EnumDateFormatsA>
+
+EXTERNDEF EnumDateFormatsExA:PROC
+EnumDateFormatsEx EQU <EnumDateFormatsExA>
+
+EXTERNDEF EnumDateFormatsExEx:PROC
+EXTERNDEF EnumDateFormatsExW:PROC
+EXTERNDEF EnumDateFormatsW:PROC
+EXTERNDEF EnumLanguageGroupLocalesA:PROC
+EnumLanguageGroupLocales EQU <EnumLanguageGroupLocalesA>
+
+EXTERNDEF EnumLanguageGroupLocalesW:PROC
+EXTERNDEF EnumResourceLanguagesA:PROC
+EnumResourceLanguages EQU <EnumResourceLanguagesA>
+
+EXTERNDEF EnumResourceLanguagesExA:PROC
+EnumResourceLanguagesEx EQU <EnumResourceLanguagesExA>
+
+EXTERNDEF EnumResourceLanguagesExW:PROC
+EXTERNDEF EnumResourceLanguagesW:PROC
+EXTERNDEF EnumResourceNamesA:PROC
+EnumResourceNames EQU <EnumResourceNamesA>
+
+EXTERNDEF EnumResourceNamesExA:PROC
+EnumResourceNamesEx EQU <EnumResourceNamesExA>
+
+EXTERNDEF EnumResourceNamesExW:PROC
+EXTERNDEF EnumResourceNamesW:PROC
+EXTERNDEF EnumResourceTypesA:PROC
+EnumResourceTypes EQU <EnumResourceTypesA>
+
+EXTERNDEF EnumResourceTypesExA:PROC
+EnumResourceTypesEx EQU <EnumResourceTypesExA>
+
+EXTERNDEF EnumResourceTypesExW:PROC
+EXTERNDEF EnumResourceTypesW:PROC
+EXTERNDEF EnumSystemCodePagesA:PROC
+EnumSystemCodePages EQU <EnumSystemCodePagesA>
+
+EXTERNDEF EnumSystemCodePagesW:PROC
+EXTERNDEF EnumSystemFirmwareTables:PROC
+EXTERNDEF EnumSystemGeoID:PROC
+EXTERNDEF EnumSystemGeoNames:PROC
+EXTERNDEF EnumSystemLanguageGroupsA:PROC
+EnumSystemLanguageGroups EQU <EnumSystemLanguageGroupsA>
+
+EXTERNDEF EnumSystemLanguageGroupsW:PROC
+EXTERNDEF EnumSystemLocalesA:PROC
+EnumSystemLocales EQU <EnumSystemLocalesA>
+
+EXTERNDEF EnumSystemLocalesEx:PROC
+EXTERNDEF EnumSystemLocalesW:PROC
+EXTERNDEF EnumTimeFormatsA:PROC
+EnumTimeFormats EQU <EnumTimeFormatsA>
+
+EXTERNDEF EnumTimeFormatsEx:PROC
+EXTERNDEF EnumTimeFormatsW:PROC
+EXTERNDEF EnumUILanguagesA:PROC
+EnumUILanguages EQU <EnumUILanguagesA>
+
+EXTERNDEF EnumUILanguagesW:PROC
+EXTERNDEF EnumerateLocalComputerNamesA:PROC
+EnumerateLocalComputerNames EQU <EnumerateLocalComputerNamesA>
+
+EXTERNDEF EnumerateLocalComputerNamesW:PROC
+EXTERNDEF EraseTape:PROC
+EXTERNDEF EscapeCommFunction:PROC
+EXTERNDEF ExitProcess:PROC
+EXTERNDEF ExitThread:PROC
+EXTERNDEF ExitVDM:PROC
+EXTERNDEF ExpandEnvironmentStringsA:PROC
+ExpandEnvironmentStrings EQU <ExpandEnvironmentStringsA>
+
+EXTERNDEF ExpandEnvironmentStringsW:PROC
+EXTERNDEF ExpungeConsoleCommandHistoryA:PROC
+ExpungeConsoleCommandHistory EQU <ExpungeConsoleCommandHistoryA>
+
+EXTERNDEF ExpungeConsoleCommandHistoryW:PROC
+EXTERNDEF FatalAppExitA:PROC
+FatalAppExit EQU <FatalAppExitA>
+
+EXTERNDEF FatalAppExitW:PROC
+EXTERNDEF FatalExit:PROC
+EXTERNDEF FileTimeToDosDateTime:PROC
+EXTERNDEF FileTimeToLocalFileTime:PROC
+EXTERNDEF FileTimeToSystemTime:PROC
+EXTERNDEF FillConsoleOutputAttribute:PROC
+EXTERNDEF FillConsoleOutputCharacterA:PROC
+FillConsoleOutputCharacter EQU <FillConsoleOutputCharacterA>
+
+EXTERNDEF FillConsoleOutputCharacterW:PROC
+EXTERNDEF FindActCtxSectionGuid:PROC
+EXTERNDEF FindActCtxSectionGuidWorker:PROC
+EXTERNDEF FindActCtxSectionStringA:PROC
+FindActCtxSectionString EQU <FindActCtxSectionStringA>
+
+EXTERNDEF FindActCtxSectionStringW:PROC
+EXTERNDEF FindActCtxSectionStringWWorker:PROC
+EXTERNDEF FindAtomA:PROC
+FindAtom EQU <FindAtomA>
+
+EXTERNDEF FindAtomW:PROC
+EXTERNDEF FindClose:PROC
+EXTERNDEF FindCloseChangeNotification:PROC
+EXTERNDEF FindFirstChangeNotificationA:PROC
+FindFirstChangeNotification EQU <FindFirstChangeNotificationA>
+
+EXTERNDEF FindFirstChangeNotificationW:PROC
+EXTERNDEF FindFirstFileA:PROC
+FindFirstFile EQU <FindFirstFileA>
+
+EXTERNDEF FindFirstFileExA:PROC
+FindFirstFileEx EQU <FindFirstFileExA>
+
+EXTERNDEF FindFirstFileExW:PROC
+EXTERNDEF FindFirstFileNameTransactedW:PROC
+EXTERNDEF FindFirstFileNameW:PROC
+EXTERNDEF FindFirstFileTransactedA:PROC
+FindFirstFileTransacted EQU <FindFirstFileTransactedA>
+
+EXTERNDEF FindFirstFileTransactedW:PROC
+EXTERNDEF FindFirstFileW:PROC
+EXTERNDEF FindFirstStreamTransactedW:PROC
+EXTERNDEF FindFirstStreamW:PROC
+EXTERNDEF FindFirstVolumeA:PROC
+FindFirstVolume EQU <FindFirstVolumeA>
+
+EXTERNDEF FindFirstVolumeMountPointA:PROC
+FindFirstVolumeMountPoint EQU <FindFirstVolumeMountPointA>
+
+EXTERNDEF FindFirstVolumeMountPointW:PROC
+EXTERNDEF FindFirstVolumeW:PROC
+EXTERNDEF FindNLSString:PROC
+EXTERNDEF FindNLSStringEx:PROC
+EXTERNDEF FindNextChangeNotification:PROC
+EXTERNDEF FindNextFileA:PROC
+FindNextFile EQU <FindNextFileA>
+
+EXTERNDEF FindNextFileNameW:PROC
+EXTERNDEF FindNextFileW:PROC
+EXTERNDEF FindNextStreamW:PROC
+EXTERNDEF FindNextVolumeA:PROC
+FindNextVolume EQU <FindNextVolumeA>
+
+EXTERNDEF FindNextVolumeMountPointA:PROC
+FindNextVolumeMountPoint EQU <FindNextVolumeMountPointA>
+
+EXTERNDEF FindNextVolumeMountPointW:PROC
+EXTERNDEF FindNextVolumeW:PROC
+EXTERNDEF FindPackagesByPackageFamily:PROC
+EXTERNDEF FindResourceA:PROC
+FindResource EQU <FindResourceA>
+
+EXTERNDEF FindResourceExA:PROC
+FindResourceEx EQU <FindResourceExA>
+
+EXTERNDEF FindResourceExW:PROC
+EXTERNDEF FindResourceW:PROC
+EXTERNDEF FindStringOrdinal:PROC
+EXTERNDEF FindVolumeClose:PROC
+EXTERNDEF FindVolumeMountPointClose:PROC
+EXTERNDEF FlsAlloc:PROC
+EXTERNDEF FlsFree:PROC
+EXTERNDEF FlsGetValue:PROC
+EXTERNDEF FlsSetValue:PROC
+EXTERNDEF FlushConsoleInputBuffer:PROC
+EXTERNDEF FlushFileBuffers:PROC
+EXTERNDEF FlushInstructionCache:PROC
+EXTERNDEF FlushProcessWriteBuffers:PROC
+EXTERNDEF FlushViewOfFile:PROC
+EXTERNDEF FoldStringA:PROC
+FoldString EQU <FoldStringA>
+
+EXTERNDEF FoldStringW:PROC
+EXTERNDEF FormatApplicationUserModelId:PROC
+EXTERNDEF FormatMessageA:PROC
+FormatMessage EQU <FormatMessageA>
+
+EXTERNDEF FormatMessageW:PROC
+EXTERNDEF FreeConsole:PROC
+EXTERNDEF FreeEnvironmentStringsA:PROC
+FreeEnvironmentStrings EQU <FreeEnvironmentStringsA>
+
+EXTERNDEF FreeEnvironmentStringsW:PROC
+EXTERNDEF FreeLibrary:PROC
+EXTERNDEF FreeLibraryAndExitThread:PROC
+EXTERNDEF FreeLibraryWhenCallbackReturns:PROC
+EXTERNDEF FreeMemoryJobObject:PROC
+EXTERNDEF FreeResource:PROC
+EXTERNDEF FreeUserPhysicalPages:PROC
+EXTERNDEF GenerateConsoleCtrlEvent:PROC
+EXTERNDEF GetACP:PROC
+EXTERNDEF GetActiveProcessorCount:PROC
+EXTERNDEF GetActiveProcessorGroupCount:PROC
+EXTERNDEF GetAppContainerAce:PROC
+EXTERNDEF GetAppContainerNamedObjectPath:PROC
+EXTERNDEF GetApplicationRecoveryCallback:PROC
+EXTERNDEF GetApplicationRecoveryCallbackWorker:PROC
+EXTERNDEF GetApplicationRestartSettings:PROC
+EXTERNDEF GetApplicationRestartSettingsWorker:PROC
+EXTERNDEF GetApplicationUserModelId:PROC
+EXTERNDEF GetAtomNameA:PROC
+GetAtomName EQU <GetAtomNameA>
+
+EXTERNDEF GetAtomNameW:PROC
+EXTERNDEF GetBinaryTypeA:PROC
+GetBinaryType EQU <GetBinaryTypeA>
+
+EXTERNDEF GetBinaryTypeW:PROC
+EXTERNDEF GetCPInfo:PROC
+EXTERNDEF GetCPInfoExA:PROC
+GetCPInfoEx EQU <GetCPInfoExA>
+
+EXTERNDEF GetCPInfoExW:PROC
+EXTERNDEF GetCachedSigningLevel:PROC
+EXTERNDEF GetCalendarDateFormat:PROC
+EXTERNDEF GetCalendarDateFormatEx:PROC
+EXTERNDEF GetCalendarDaysInMonth:PROC
+EXTERNDEF GetCalendarDifferenceInDays:PROC
+EXTERNDEF GetCalendarInfoA:PROC
+GetCalendarInfo EQU <GetCalendarInfoA>
+
+EXTERNDEF GetCalendarInfoEx:PROC
+EXTERNDEF GetCalendarInfoW:PROC
+EXTERNDEF GetCalendarMonthsInYear:PROC
+EXTERNDEF GetCalendarSupportedDateRange:PROC
+EXTERNDEF GetCalendarWeekNumber:PROC
+EXTERNDEF GetComPlusPackageInstallStatus:PROC
+EXTERNDEF GetCommConfig:PROC
+EXTERNDEF GetCommMask:PROC
+EXTERNDEF GetCommModemStatus:PROC
+EXTERNDEF GetCommProperties:PROC
+EXTERNDEF GetCommState:PROC
+EXTERNDEF GetCommTimeouts:PROC
+EXTERNDEF GetCommandLineA:PROC
+GetCommandLine EQU <GetCommandLineA>
+
+EXTERNDEF GetCommandLineW:PROC
+EXTERNDEF GetCompressedFileSizeA:PROC
+GetCompressedFileSize EQU <GetCompressedFileSizeA>
+
+EXTERNDEF GetCompressedFileSizeTransactedA:PROC
+GetCompressedFileSizeTransacted EQU <GetCompressedFileSizeTransactedA>
+
+EXTERNDEF GetCompressedFileSizeTransactedW:PROC
+EXTERNDEF GetCompressedFileSizeW:PROC
+EXTERNDEF GetComputerNameA:PROC
+GetComputerName EQU <GetComputerNameA>
+
+EXTERNDEF GetComputerNameExA:PROC
+GetComputerNameEx EQU <GetComputerNameExA>
+
+EXTERNDEF GetComputerNameExW:PROC
+EXTERNDEF GetComputerNameW:PROC
+EXTERNDEF GetConsoleAliasA:PROC
+GetConsoleAlias EQU <GetConsoleAliasA>
+
+EXTERNDEF GetConsoleAliasExesA:PROC
+GetConsoleAliasExes EQU <GetConsoleAliasExesA>
+
+EXTERNDEF GetConsoleAliasExesLengthA:PROC
+GetConsoleAliasExesLength EQU <GetConsoleAliasExesLengthA>
+
+EXTERNDEF GetConsoleAliasExesLengthW:PROC
+EXTERNDEF GetConsoleAliasExesW:PROC
+EXTERNDEF GetConsoleAliasW:PROC
+EXTERNDEF GetConsoleAliasesA:PROC
+GetConsoleAliases EQU <GetConsoleAliasesA>
+
+EXTERNDEF GetConsoleAliasesLengthA:PROC
+GetConsoleAliasesLength EQU <GetConsoleAliasesLengthA>
+
+EXTERNDEF GetConsoleAliasesLengthW:PROC
+EXTERNDEF GetConsoleAliasesW:PROC
+EXTERNDEF GetConsoleCP:PROC
+EXTERNDEF GetConsoleCharType:PROC
+EXTERNDEF GetConsoleCommandHistoryA:PROC
+GetConsoleCommandHistory EQU <GetConsoleCommandHistoryA>
+
+EXTERNDEF GetConsoleCommandHistoryLengthA:PROC
+GetConsoleCommandHistoryLength EQU <GetConsoleCommandHistoryLengthA>
+
+EXTERNDEF GetConsoleCommandHistoryLengthW:PROC
+EXTERNDEF GetConsoleCommandHistoryW:PROC
+EXTERNDEF GetConsoleCursorInfo:PROC
+EXTERNDEF GetConsoleCursorMode:PROC
+EXTERNDEF GetConsoleDisplayMode:PROC
+EXTERNDEF GetConsoleFontInfo:PROC
+EXTERNDEF GetConsoleFontSize:PROC
+EXTERNDEF GetConsoleHardwareState:PROC
+EXTERNDEF GetConsoleHistoryInfo:PROC
+EXTERNDEF GetConsoleInputExeNameA:PROC
+GetConsoleInputExeName EQU <GetConsoleInputExeNameA>
+
+EXTERNDEF GetConsoleInputExeNameW:PROC
+EXTERNDEF GetConsoleInputWaitHandle:PROC
+EXTERNDEF GetConsoleKeyboardLayoutNameA:PROC
+GetConsoleKeyboardLayoutName EQU <GetConsoleKeyboardLayoutNameA>
+
+EXTERNDEF GetConsoleKeyboardLayoutNameW:PROC
+EXTERNDEF GetConsoleMode:PROC
+EXTERNDEF GetConsoleNlsMode:PROC
+EXTERNDEF GetConsoleOriginalTitleA:PROC
+GetConsoleOriginalTitle EQU <GetConsoleOriginalTitleA>
+
+EXTERNDEF GetConsoleOriginalTitleW:PROC
+EXTERNDEF GetConsoleOutputCP:PROC
+EXTERNDEF GetConsoleProcessList:PROC
+EXTERNDEF GetConsoleScreenBufferInfo:PROC
+EXTERNDEF GetConsoleScreenBufferInfoEx:PROC
+EXTERNDEF GetConsoleSelectionInfo:PROC
+EXTERNDEF GetConsoleTitleA:PROC
+GetConsoleTitle EQU <GetConsoleTitleA>
+
+EXTERNDEF GetConsoleTitleW:PROC
+EXTERNDEF GetConsoleWindow:PROC
+EXTERNDEF GetCurrencyFormatA:PROC
+GetCurrencyFormat EQU <GetCurrencyFormatA>
+
+EXTERNDEF GetCurrencyFormatEx:PROC
+EXTERNDEF GetCurrencyFormatW:PROC
+EXTERNDEF GetCurrentActCtx:PROC
+EXTERNDEF GetCurrentActCtxWorker:PROC
+EXTERNDEF GetCurrentApplicationUserModelId:PROC
+EXTERNDEF GetCurrentConsoleFont:PROC
+EXTERNDEF GetCurrentConsoleFontEx:PROC
+EXTERNDEF GetCurrentDirectoryA:PROC
+GetCurrentDirectory EQU <GetCurrentDirectoryA>
+
+EXTERNDEF GetCurrentDirectoryW:PROC
+EXTERNDEF GetCurrentPackageFamilyName:PROC
+EXTERNDEF GetCurrentPackageFullName:PROC
+EXTERNDEF GetCurrentPackageId:PROC
+EXTERNDEF GetCurrentPackageInfo:PROC
+EXTERNDEF GetCurrentPackagePath:PROC
+EXTERNDEF GetCurrentProcess:PROC
+EXTERNDEF GetCurrentProcessId:PROC
+EXTERNDEF GetCurrentProcessorNumber:PROC
+EXTERNDEF GetCurrentProcessorNumberEx:PROC
+EXTERNDEF GetCurrentThread:PROC
+EXTERNDEF GetCurrentThreadId:PROC
+EXTERNDEF GetCurrentThreadStackLimits:PROC
+EXTERNDEF GetDateFormatA:PROC
+GetDateFormat EQU <GetDateFormatA>
+
+EXTERNDEF GetDateFormatAWorker:PROC
+EXTERNDEF GetDateFormatEx:PROC
+EXTERNDEF GetDateFormatW:PROC
+EXTERNDEF GetDateFormatWWorker:PROC
+EXTERNDEF GetDefaultCommConfigA:PROC
+GetDefaultCommConfig EQU <GetDefaultCommConfigA>
+
+EXTERNDEF GetDefaultCommConfigW:PROC
+EXTERNDEF GetDevicePowerState:PROC
+EXTERNDEF GetDiskFreeSpaceA:PROC
+GetDiskFreeSpace EQU <GetDiskFreeSpaceA>
+
+EXTERNDEF GetDiskFreeSpaceExA:PROC
+GetDiskFreeSpaceEx EQU <GetDiskFreeSpaceExA>
+
+EXTERNDEF GetDiskFreeSpaceExW:PROC
+EXTERNDEF GetDiskFreeSpaceW:PROC
+EXTERNDEF GetDiskSpaceInformationA:PROC
+GetDiskSpaceInformation EQU <GetDiskSpaceInformationA>
+
+EXTERNDEF GetDiskSpaceInformationW:PROC
+EXTERNDEF GetDllDirectoryA:PROC
+GetDllDirectory EQU <GetDllDirectoryA>
+
+EXTERNDEF GetDllDirectoryW:PROC
+EXTERNDEF GetDriveTypeA:PROC
+GetDriveType EQU <GetDriveTypeA>
+
+EXTERNDEF GetDriveTypeW:PROC
+EXTERNDEF GetDurationFormat:PROC
+EXTERNDEF GetDurationFormatEx:PROC
+EXTERNDEF GetDynamicTimeZoneInformation:PROC
+EXTERNDEF GetEnabledXStateFeatures:PROC
+EXTERNDEF GetEncryptedFileVersionExt:PROC
+EXTERNDEF GetEnvironmentStringsA:PROC
+GetEnvironmentStrings EQU <GetEnvironmentStringsA>
+
+EXTERNDEF GetEnvironmentStringsW:PROC
+EXTERNDEF GetEnvironmentVariableA:PROC
+GetEnvironmentVariable EQU <GetEnvironmentVariableA>
+
+EXTERNDEF GetEnvironmentVariableW:PROC
+EXTERNDEF GetEraNameCountedString:PROC
+EXTERNDEF GetErrorMode:PROC
+EXTERNDEF GetExitCodeProcess:PROC
+EXTERNDEF GetExitCodeThread:PROC
+EXTERNDEF GetExpandedNameA:PROC
+GetExpandedName EQU <GetExpandedNameA>
+
+EXTERNDEF GetExpandedNameW:PROC
+EXTERNDEF GetFileAttributesA:PROC
+GetFileAttributes EQU <GetFileAttributesA>
+
+EXTERNDEF GetFileAttributesExA:PROC
+GetFileAttributesEx EQU <GetFileAttributesExA>
+
+EXTERNDEF GetFileAttributesExW:PROC
+EXTERNDEF GetFileAttributesTransactedA:PROC
+GetFileAttributesTransacted EQU <GetFileAttributesTransactedA>
+
+EXTERNDEF GetFileAttributesTransactedW:PROC
+EXTERNDEF GetFileAttributesW:PROC
+EXTERNDEF GetFileBandwidthReservation:PROC
+EXTERNDEF GetFileInformationByHandle:PROC
+EXTERNDEF GetFileInformationByHandleEx:PROC
+EXTERNDEF GetFileMUIInfo:PROC
+EXTERNDEF GetFileMUIPath:PROC
+EXTERNDEF GetFileSize:PROC
+EXTERNDEF GetFileSizeEx:PROC
+EXTERNDEF GetFileTime:PROC
+EXTERNDEF GetFileType:PROC
+EXTERNDEF GetFinalPathNameByHandleA:PROC
+GetFinalPathNameByHandle EQU <GetFinalPathNameByHandleA>
+
+EXTERNDEF GetFinalPathNameByHandleW:PROC
+EXTERNDEF GetFirmwareEnvironmentVariableA:PROC
+GetFirmwareEnvironmentVariable EQU <GetFirmwareEnvironmentVariableA>
+
+EXTERNDEF GetFirmwareEnvironmentVariableExA:PROC
+GetFirmwareEnvironmentVariableEx EQU <GetFirmwareEnvironmentVariableExA>
+
+EXTERNDEF GetFirmwareEnvironmentVariableExW:PROC
+EXTERNDEF GetFirmwareEnvironmentVariableW:PROC
+EXTERNDEF GetFirmwareType:PROC
+EXTERNDEF GetFullPathNameA:PROC
+GetFullPathName EQU <GetFullPathNameA>
+
+EXTERNDEF GetFullPathNameTransactedA:PROC
+GetFullPathNameTransacted EQU <GetFullPathNameTransactedA>
+
+EXTERNDEF GetFullPathNameTransactedW:PROC
+EXTERNDEF GetFullPathNameW:PROC
+EXTERNDEF GetGeoInfoA:PROC
+GetGeoInfo EQU <GetGeoInfoA>
+
+EXTERNDEF GetGeoInfoEx:PROC
+EXTERNDEF GetGeoInfoW:PROC
+EXTERNDEF GetHandleContext:PROC
+EXTERNDEF GetHandleInformation:PROC
+EXTERNDEF GetLargePageMinimum:PROC
+EXTERNDEF GetLargestConsoleWindowSize:PROC
+EXTERNDEF GetLastError:PROC
+EXTERNDEF GetLocalTime:PROC
+EXTERNDEF GetLocaleInfoA:PROC
+GetLocaleInfo EQU <GetLocaleInfoA>
+
+EXTERNDEF GetLocaleInfoEx:PROC
+EXTERNDEF GetLocaleInfoW:PROC
+EXTERNDEF GetLogicalDriveStringsA:PROC
+GetLogicalDriveStrings EQU <GetLogicalDriveStringsA>
+
+EXTERNDEF GetLogicalDriveStringsW:PROC
+EXTERNDEF GetLogicalDrives:PROC
+EXTERNDEF GetLogicalProcessorInformation:PROC
+EXTERNDEF GetLogicalProcessorInformationEx:PROC
+EXTERNDEF GetLongPathNameA:PROC
+GetLongPathName EQU <GetLongPathNameA>
+
+EXTERNDEF GetLongPathNameTransactedA:PROC
+GetLongPathNameTransacted EQU <GetLongPathNameTransactedA>
+
+EXTERNDEF GetLongPathNameTransactedW:PROC
+EXTERNDEF GetLongPathNameW:PROC
+EXTERNDEF GetMailslotInfo:PROC
+EXTERNDEF GetMaximumProcessorCount:PROC
+EXTERNDEF GetMaximumProcessorGroupCount:PROC
+EXTERNDEF GetMemoryErrorHandlingCapabilities:PROC
+EXTERNDEF GetModuleFileNameA:PROC
+GetModuleFileName EQU <GetModuleFileNameA>
+
+EXTERNDEF GetModuleFileNameW:PROC
+EXTERNDEF GetModuleHandleA:PROC
+GetModuleHandle EQU <GetModuleHandleA>
+
+EXTERNDEF GetModuleHandleExA:PROC
+GetModuleHandleEx EQU <GetModuleHandleExA>
+
+EXTERNDEF GetModuleHandleExW:PROC
+EXTERNDEF GetModuleHandleW:PROC
+EXTERNDEF GetNLSVersion:PROC
+EXTERNDEF GetNLSVersionEx:PROC
+EXTERNDEF GetNamedPipeAttribute:PROC
+EXTERNDEF GetNamedPipeClientComputerNameA:PROC
+GetNamedPipeClientComputerName EQU <GetNamedPipeClientComputerNameA>
+
+EXTERNDEF GetNamedPipeClientComputerNameW:PROC
+EXTERNDEF GetNamedPipeClientProcessId:PROC
+EXTERNDEF GetNamedPipeClientSessionId:PROC
+EXTERNDEF GetNamedPipeHandleStateA:PROC
+GetNamedPipeHandleState EQU <GetNamedPipeHandleStateA>
+
+EXTERNDEF GetNamedPipeHandleStateW:PROC
+EXTERNDEF GetNamedPipeInfo:PROC
+EXTERNDEF GetNamedPipeServerProcessId:PROC
+EXTERNDEF GetNamedPipeServerSessionId:PROC
+EXTERNDEF GetNativeSystemInfo:PROC
+EXTERNDEF GetNextVDMCommand:PROC
+EXTERNDEF GetNumaAvailableMemoryNode:PROC
+EXTERNDEF GetNumaAvailableMemoryNodeEx:PROC
+EXTERNDEF GetNumaHighestNodeNumber:PROC
+EXTERNDEF GetNumaNodeNumberFromHandle:PROC
+EXTERNDEF GetNumaNodeProcessorMask:PROC
+EXTERNDEF GetNumaNodeProcessorMaskEx:PROC
+EXTERNDEF GetNumaProcessorNode:PROC
+EXTERNDEF GetNumaProcessorNodeEx:PROC
+EXTERNDEF GetNumaProximityNode:PROC
+EXTERNDEF GetNumaProximityNodeEx:PROC
+EXTERNDEF GetNumberFormatA:PROC
+GetNumberFormat EQU <GetNumberFormatA>
+
+EXTERNDEF GetNumberFormatEx:PROC
+EXTERNDEF GetNumberFormatW:PROC
+EXTERNDEF GetNumberOfConsoleFonts:PROC
+EXTERNDEF GetNumberOfConsoleInputEvents:PROC
+EXTERNDEF GetNumberOfConsoleMouseButtons:PROC
+EXTERNDEF GetOEMCP:PROC
+EXTERNDEF GetOverlappedResult:PROC
+EXTERNDEF GetOverlappedResultEx:PROC
+EXTERNDEF GetPackageApplicationIds:PROC
+EXTERNDEF GetPackageFamilyName:PROC
+EXTERNDEF GetPackageFullName:PROC
+EXTERNDEF GetPackageId:PROC
+EXTERNDEF GetPackageInfo:PROC
+EXTERNDEF GetPackagePath:PROC
+EXTERNDEF GetPackagePathByFullName:PROC
+EXTERNDEF GetPackagesByPackageFamily:PROC
+EXTERNDEF GetPhysicallyInstalledSystemMemory:PROC
+EXTERNDEF GetPriorityClass:PROC
+EXTERNDEF GetPrivateProfileIntA:PROC
+GetPrivateProfileInt EQU <GetPrivateProfileIntA>
+
+EXTERNDEF GetPrivateProfileIntW:PROC
+EXTERNDEF GetPrivateProfileSectionA:PROC
+GetPrivateProfileSection EQU <GetPrivateProfileSectionA>
+
+EXTERNDEF GetPrivateProfileSectionNamesA:PROC
+GetPrivateProfileSectionNames EQU <GetPrivateProfileSectionNamesA>
+
+EXTERNDEF GetPrivateProfileSectionNamesW:PROC
+EXTERNDEF GetPrivateProfileSectionW:PROC
+EXTERNDEF GetPrivateProfileStringA:PROC
+GetPrivateProfileString EQU <GetPrivateProfileStringA>
+
+EXTERNDEF GetPrivateProfileStringW:PROC
+EXTERNDEF GetPrivateProfileStructA:PROC
+GetPrivateProfileStruct EQU <GetPrivateProfileStructA>
+
+EXTERNDEF GetPrivateProfileStructW:PROC
+EXTERNDEF GetProcAddress:PROC
+EXTERNDEF GetProcessAffinityMask:PROC
+EXTERNDEF GetProcessDEPPolicy:PROC
+EXTERNDEF GetProcessDefaultCpuSets:PROC
+EXTERNDEF GetProcessGroupAffinity:PROC
+EXTERNDEF GetProcessHandleCount:PROC
+EXTERNDEF GetProcessHeap:PROC
+EXTERNDEF GetProcessHeaps:PROC
+EXTERNDEF GetProcessId:PROC
+EXTERNDEF GetProcessIdOfThread:PROC
+EXTERNDEF GetProcessInformation:PROC
+EXTERNDEF GetProcessIoCounters:PROC
+EXTERNDEF GetProcessMitigationPolicy:PROC
+EXTERNDEF GetProcessPreferredUILanguages:PROC
+EXTERNDEF GetProcessPriorityBoost:PROC
+EXTERNDEF GetProcessShutdownParameters:PROC
+EXTERNDEF GetProcessTimes:PROC
+EXTERNDEF GetProcessVersion:PROC
+EXTERNDEF GetProcessWorkingSetSize:PROC
+EXTERNDEF GetProcessWorkingSetSizeEx:PROC
+EXTERNDEF GetProcessorSystemCycleTime:PROC
+EXTERNDEF GetProductInfo:PROC
+EXTERNDEF GetProfileIntA:PROC
+GetProfileInt EQU <GetProfileIntA>
+
+EXTERNDEF GetProfileIntW:PROC
+EXTERNDEF GetProfileSectionA:PROC
+GetProfileSection EQU <GetProfileSectionA>
+
+EXTERNDEF GetProfileSectionW:PROC
+EXTERNDEF GetProfileStringA:PROC
+GetProfileString EQU <GetProfileStringA>
+
+EXTERNDEF GetProfileStringW:PROC
+EXTERNDEF GetQueuedCompletionStatus:PROC
+EXTERNDEF GetQueuedCompletionStatusEx:PROC
+EXTERNDEF GetShortPathNameA:PROC
+GetShortPathName EQU <GetShortPathNameA>
+
+EXTERNDEF GetShortPathNameW:PROC
+EXTERNDEF GetStagedPackagePathByFullName:PROC
+EXTERNDEF GetStartupInfoA:PROC
+GetStartupInfo EQU <GetStartupInfoA>
+
+EXTERNDEF GetStartupInfoW:PROC
+EXTERNDEF GetStateFolder:PROC
+EXTERNDEF GetStdHandle:PROC
+EXTERNDEF GetStringScripts:PROC
+EXTERNDEF GetStringTypeA:PROC
+GetStringType EQU <GetStringTypeA>
+
+EXTERNDEF GetStringTypeExA:PROC
+GetStringTypeEx EQU <GetStringTypeExA>
+
+EXTERNDEF GetStringTypeExW:PROC
+EXTERNDEF GetStringTypeW:PROC
+EXTERNDEF GetSystemAppDataKey:PROC
+EXTERNDEF GetSystemCpuSetInformation:PROC
+EXTERNDEF GetSystemDEPPolicy:PROC
+EXTERNDEF GetSystemDefaultLCID:PROC
+EXTERNDEF GetSystemDefaultLangID:PROC
+EXTERNDEF GetSystemDefaultLocaleName:PROC
+EXTERNDEF GetSystemDefaultUILanguage:PROC
+EXTERNDEF GetSystemDirectoryA:PROC
+GetSystemDirectory EQU <GetSystemDirectoryA>
+
+EXTERNDEF GetSystemDirectoryW:PROC
+EXTERNDEF GetSystemFileCacheSize:PROC
+EXTERNDEF GetSystemFirmwareTable:PROC
+EXTERNDEF GetSystemInfo:PROC
+EXTERNDEF GetSystemPowerStatus:PROC
+EXTERNDEF GetSystemPreferredUILanguages:PROC
+EXTERNDEF GetSystemRegistryQuota:PROC
+EXTERNDEF GetSystemTime:PROC
+EXTERNDEF GetSystemTimeAdjustment:PROC
+EXTERNDEF GetSystemTimeAsFileTime:PROC
+EXTERNDEF GetSystemTimePreciseAsFileTime:PROC
+EXTERNDEF GetSystemTimes:PROC
+EXTERNDEF GetSystemWindowsDirectoryA:PROC
+GetSystemWindowsDirectory EQU <GetSystemWindowsDirectoryA>
+
+EXTERNDEF GetSystemWindowsDirectoryW:PROC
+EXTERNDEF GetSystemWow64DirectoryA:PROC
+GetSystemWow64Directory EQU <GetSystemWow64DirectoryA>
+
+EXTERNDEF GetSystemWow64DirectoryW:PROC
+EXTERNDEF GetTapeParameters:PROC
+EXTERNDEF GetTapePosition:PROC
+EXTERNDEF GetTapeStatus:PROC
+EXTERNDEF GetTempFileNameA:PROC
+GetTempFileName EQU <GetTempFileNameA>
+
+EXTERNDEF GetTempFileNameW:PROC
+EXTERNDEF GetTempPathA:PROC
+GetTempPath EQU <GetTempPathA>
+
+EXTERNDEF GetTempPathW:PROC
+EXTERNDEF GetThreadContext:PROC
+EXTERNDEF GetThreadDescription:PROC
+EXTERNDEF GetThreadErrorMode:PROC
+EXTERNDEF GetThreadGroupAffinity:PROC
+EXTERNDEF GetThreadIOPendingFlag:PROC
+EXTERNDEF GetThreadId:PROC
+EXTERNDEF GetThreadIdealProcessorEx:PROC
+EXTERNDEF GetThreadInformation:PROC
+EXTERNDEF GetThreadLocale:PROC
+EXTERNDEF GetThreadPreferredUILanguages:PROC
+EXTERNDEF GetThreadPriority:PROC
+EXTERNDEF GetThreadPriorityBoost:PROC
+EXTERNDEF GetThreadSelectedCpuSets:PROC
+EXTERNDEF GetThreadSelectorEntry:PROC
+EXTERNDEF GetThreadTimes:PROC
+EXTERNDEF GetThreadUILanguage:PROC
+EXTERNDEF GetTickCount:PROC
+EXTERNDEF GetTickCount64:PROC
+EXTERNDEF GetTimeFormatA:PROC
+GetTimeFormat EQU <GetTimeFormatA>
+
+EXTERNDEF GetTimeFormatAWorker:PROC
+EXTERNDEF GetTimeFormatEx:PROC
+EXTERNDEF GetTimeFormatW:PROC
+EXTERNDEF GetTimeFormatWWorker:PROC
+EXTERNDEF GetTimeZoneInformation:PROC
+EXTERNDEF GetTimeZoneInformationForYear:PROC
+EXTERNDEF GetUILanguageInfo:PROC
+EXTERNDEF GetUserDefaultGeoName:PROC
+EXTERNDEF GetUserDefaultLCID:PROC
+EXTERNDEF GetUserDefaultLangID:PROC
+EXTERNDEF GetUserDefaultLocaleName:PROC
+EXTERNDEF GetUserDefaultUILanguage:PROC
+EXTERNDEF GetUserGeoID:PROC
+EXTERNDEF GetUserPreferredUILanguages:PROC
+EXTERNDEF GetVDMCurrentDirectories:PROC
+EXTERNDEF GetVersion:PROC
+EXTERNDEF GetVersionExA:PROC
+GetVersionEx EQU <GetVersionExA>
+
+EXTERNDEF GetVersionExW:PROC
+EXTERNDEF GetVolumeInformationA:PROC
+GetVolumeInformation EQU <GetVolumeInformationA>
+
+EXTERNDEF GetVolumeInformationByHandleW:PROC
+EXTERNDEF GetVolumeInformationW:PROC
+EXTERNDEF GetVolumeNameForVolumeMountPointA:PROC
+GetVolumeNameForVolumeMountPoint EQU <GetVolumeNameForVolumeMountPointA>
+
+EXTERNDEF GetVolumeNameForVolumeMountPointW:PROC
+EXTERNDEF GetVolumePathNameA:PROC
+GetVolumePathName EQU <GetVolumePathNameA>
+
+EXTERNDEF GetVolumePathNameW:PROC
+EXTERNDEF GetVolumePathNamesForVolumeNameA:PROC
+GetVolumePathNamesForVolumeName EQU <GetVolumePathNamesForVolumeNameA>
+
+EXTERNDEF GetVolumePathNamesForVolumeNameW:PROC
+EXTERNDEF GetWindowsDirectoryA:PROC
+GetWindowsDirectory EQU <GetWindowsDirectoryA>
+
+EXTERNDEF GetWindowsDirectoryW:PROC
+EXTERNDEF GetWriteWatch:PROC
+EXTERNDEF GetXStateFeaturesMask:PROC
+EXTERNDEF GlobalAddAtomA:PROC
+GlobalAddAtom EQU <GlobalAddAtomA>
+
+EXTERNDEF GlobalAddAtomExA:PROC
+GlobalAddAtomEx EQU <GlobalAddAtomExA>
+
+EXTERNDEF GlobalAddAtomExW:PROC
+EXTERNDEF GlobalAddAtomW:PROC
+EXTERNDEF GlobalAlloc:PROC
+EXTERNDEF GlobalCompact:PROC
+EXTERNDEF GlobalDeleteAtom:PROC
+EXTERNDEF GlobalFindAtomA:PROC
+GlobalFindAtom EQU <GlobalFindAtomA>
+
+EXTERNDEF GlobalFindAtomW:PROC
+EXTERNDEF GlobalFix:PROC
+EXTERNDEF GlobalFlags:PROC
+EXTERNDEF GlobalFree:PROC
+EXTERNDEF GlobalGetAtomNameA:PROC
+GlobalGetAtomName EQU <GlobalGetAtomNameA>
+
+EXTERNDEF GlobalGetAtomNameW:PROC
+EXTERNDEF GlobalHandle:PROC
+EXTERNDEF GlobalLock:PROC
+EXTERNDEF GlobalMemoryStatus:PROC
+EXTERNDEF GlobalMemoryStatusEx:PROC
+EXTERNDEF GlobalReAlloc:PROC
+EXTERNDEF GlobalSize:PROC
+EXTERNDEF GlobalUnWire:PROC
+EXTERNDEF GlobalUnfix:PROC
+EXTERNDEF GlobalUnlock:PROC
+EXTERNDEF GlobalWire:PROC
+EXTERNDEF Heap32First:PROC
+EXTERNDEF Heap32ListFirst:PROC
+EXTERNDEF Heap32ListNext:PROC
+EXTERNDEF Heap32Next:PROC
+EXTERNDEF HeapAlloc:PROC
+EXTERNDEF HeapCompact:PROC
+EXTERNDEF HeapCreate:PROC
+EXTERNDEF HeapDestroy:PROC
+EXTERNDEF HeapFree:PROC
+EXTERNDEF HeapLock:PROC
+EXTERNDEF HeapQueryInformation:PROC
+EXTERNDEF HeapReAlloc:PROC
+EXTERNDEF HeapSetInformation:PROC
+EXTERNDEF HeapSize:PROC
+EXTERNDEF HeapSummary:PROC
+EXTERNDEF HeapUnlock:PROC
+EXTERNDEF HeapValidate:PROC
+EXTERNDEF HeapWalk:PROC
+EXTERNDEF IdnToAscii:PROC
+EXTERNDEF IdnToNameprepUnicode:PROC
+EXTERNDEF IdnToUnicode:PROC
+EXTERNDEF InitAtomTable:PROC
+EXTERNDEF InitOnceBeginInitialize:PROC
+EXTERNDEF InitOnceComplete:PROC
+EXTERNDEF InitOnceExecuteOnce:PROC
+EXTERNDEF InitOnceInitialize:PROC
+EXTERNDEF InitializeConditionVariable:PROC
+EXTERNDEF InitializeContext:PROC
+EXTERNDEF InitializeContext2:PROC
+EXTERNDEF InitializeCriticalSection:PROC
+EXTERNDEF InitializeCriticalSectionAndSpinCount:PROC
+EXTERNDEF InitializeCriticalSectionEx:PROC
+EXTERNDEF InitializeEnclave:PROC
+EXTERNDEF InitializeProcThreadAttributeList:PROC
+EXTERNDEF InitializeSListHead:PROC
+EXTERNDEF InitializeSRWLock:PROC
+EXTERNDEF InitializeSynchronizationBarrier:PROC
+EXTERNDEF InstallELAMCertificateInfo:PROC
+EXTERNDEF InterlockedCompareExchange:PROC
+EXTERNDEF InterlockedCompareExchange64:PROC
+EXTERNDEF InterlockedDecrement:PROC
+EXTERNDEF InterlockedExchange:PROC
+EXTERNDEF InterlockedExchangeAdd:PROC
+EXTERNDEF InterlockedFlushSList:PROC
+EXTERNDEF InterlockedIncrement:PROC
+EXTERNDEF InterlockedPopEntrySList:PROC
+EXTERNDEF InterlockedPushEntrySList:PROC
+EXTERNDEF InterlockedPushListSList:PROC
+EXTERNDEF InterlockedPushListSListEx:PROC
+EXTERNDEF InvalidateConsoleDIBits:PROC
+EXTERNDEF IsBadCodePtr:PROC
+EXTERNDEF IsBadHugeReadPtr:PROC
+EXTERNDEF IsBadHugeWritePtr:PROC
+EXTERNDEF IsBadReadPtr:PROC
+EXTERNDEF IsBadStringPtrA:PROC
+IsBadStringPtr EQU <IsBadStringPtrA>
+
+EXTERNDEF IsBadStringPtrW:PROC
+EXTERNDEF IsBadWritePtr:PROC
+EXTERNDEF IsCalendarLeapDay:PROC
+EXTERNDEF IsCalendarLeapMonth:PROC
+EXTERNDEF IsCalendarLeapYear:PROC
+EXTERNDEF IsDBCSLeadByte:PROC
+EXTERNDEF IsDBCSLeadByteEx:PROC
+EXTERNDEF IsDebuggerPresent:PROC
+EXTERNDEF IsEnclaveTypeSupported:PROC
+EXTERNDEF IsNLSDefinedString:PROC
+EXTERNDEF IsNativeVhdBoot:PROC
+EXTERNDEF IsNormalizedString:PROC
+EXTERNDEF IsProcessCritical:PROC
+EXTERNDEF IsProcessInJob:PROC
+EXTERNDEF IsProcessorFeaturePresent:PROC
+EXTERNDEF IsSystemResumeAutomatic:PROC
+EXTERNDEF IsThreadAFiber:PROC
+EXTERNDEF IsThreadpoolTimerSet:PROC
+EXTERNDEF IsUserCetAvailableInEnvironment:PROC
+EXTERNDEF IsValidCalDateTime:PROC
+EXTERNDEF IsValidCodePage:PROC
+EXTERNDEF IsValidLanguageGroup:PROC
+EXTERNDEF IsValidLocale:PROC
+EXTERNDEF IsValidLocaleName:PROC
+EXTERNDEF IsValidNLSVersion:PROC
+EXTERNDEF IsWow64GuestMachineSupported:PROC
+EXTERNDEF IsWow64Process:PROC
+EXTERNDEF IsWow64Process2:PROC
+EXTERNDEF K32EmptyWorkingSet:PROC
+EXTERNDEF K32EnumDeviceDrivers:PROC
+EXTERNDEF K32EnumPageFilesA:PROC
+K32EnumPageFiles EQU <K32EnumPageFilesA>
+
+EXTERNDEF K32EnumPageFilesW:PROC
+EXTERNDEF K32EnumProcessModules:PROC
+EXTERNDEF K32EnumProcessModulesEx:PROC
+EXTERNDEF K32EnumProcesses:PROC
+EXTERNDEF K32GetDeviceDriverBaseNameA:PROC
+K32GetDeviceDriverBaseName EQU <K32GetDeviceDriverBaseNameA>
+
+EXTERNDEF K32GetDeviceDriverBaseNameW:PROC
+EXTERNDEF K32GetDeviceDriverFileNameA:PROC
+K32GetDeviceDriverFileName EQU <K32GetDeviceDriverFileNameA>
+
+EXTERNDEF K32GetDeviceDriverFileNameW:PROC
+EXTERNDEF K32GetMappedFileNameA:PROC
+K32GetMappedFileName EQU <K32GetMappedFileNameA>
+
+EXTERNDEF K32GetMappedFileNameW:PROC
+EXTERNDEF K32GetModuleBaseNameA:PROC
+K32GetModuleBaseName EQU <K32GetModuleBaseNameA>
+
+EXTERNDEF K32GetModuleBaseNameW:PROC
+EXTERNDEF K32GetModuleFileNameExA:PROC
+K32GetModuleFileNameEx EQU <K32GetModuleFileNameExA>
+
+EXTERNDEF K32GetModuleFileNameExW:PROC
+EXTERNDEF K32GetModuleInformation:PROC
+EXTERNDEF K32GetPerformanceInfo:PROC
+EXTERNDEF K32GetProcessImageFileNameA:PROC
+K32GetProcessImageFileName EQU <K32GetProcessImageFileNameA>
+
+EXTERNDEF K32GetProcessImageFileNameW:PROC
+EXTERNDEF K32GetProcessMemoryInfo:PROC
+EXTERNDEF K32GetWsChanges:PROC
+EXTERNDEF K32GetWsChangesEx:PROC
+EXTERNDEF K32InitializeProcessForWsWatch:PROC
+EXTERNDEF K32QueryWorkingSet:PROC
+EXTERNDEF K32QueryWorkingSetEx:PROC
+EXTERNDEF LCIDToLocaleName:PROC
+EXTERNDEF LCMapStringA:PROC
+LCMapString EQU <LCMapStringA>
+
+EXTERNDEF LCMapStringEx:PROC
+EXTERNDEF LCMapStringW:PROC
+EXTERNDEF LZClose:PROC
+EXTERNDEF LZCloseFile:PROC
+EXTERNDEF LZCopy:PROC
+EXTERNDEF LZCreateFileW:PROC
+EXTERNDEF LZDone:PROC
+EXTERNDEF LZInit:PROC
+EXTERNDEF LZOpenFileA:PROC
+LZOpenFile EQU <LZOpenFileA>
+
+EXTERNDEF LZOpenFileW:PROC
+EXTERNDEF LZRead:PROC
+EXTERNDEF LZSeek:PROC
+EXTERNDEF LZStart:PROC
+EXTERNDEF LeaveCriticalSection:PROC
+EXTERNDEF LeaveCriticalSectionWhenCallbackReturns:PROC
+EXTERNDEF LoadAppInitDlls:PROC
+EXTERNDEF LoadEnclaveData:PROC
+EXTERNDEF LoadLibraryA:PROC
+LoadLibrary EQU <LoadLibraryA>
+
+EXTERNDEF LoadLibraryExA:PROC
+LoadLibraryEx EQU <LoadLibraryExA>
+
+EXTERNDEF LoadLibraryExW:PROC
+EXTERNDEF LoadLibraryW:PROC
+EXTERNDEF LoadModule:PROC
+EXTERNDEF LoadPackagedLibrary:PROC
+EXTERNDEF LoadResource:PROC
+EXTERNDEF LoadStringBaseExW:PROC
+EXTERNDEF LoadStringBaseW:PROC
+EXTERNDEF LocalAlloc:PROC
+EXTERNDEF LocalCompact:PROC
+EXTERNDEF LocalFileTimeToFileTime:PROC
+EXTERNDEF LocalFileTimeToLocalSystemTime:PROC
+EXTERNDEF LocalFlags:PROC
+EXTERNDEF LocalFree:PROC
+EXTERNDEF LocalHandle:PROC
+EXTERNDEF LocalLock:PROC
+EXTERNDEF LocalReAlloc:PROC
+EXTERNDEF LocalShrink:PROC
+EXTERNDEF LocalSize:PROC
+EXTERNDEF LocalSystemTimeToLocalFileTime:PROC
+EXTERNDEF LocalUnlock:PROC
+EXTERNDEF LocaleNameToLCID:PROC
+EXTERNDEF LocateXStateFeature:PROC
+EXTERNDEF LockFile:PROC
+EXTERNDEF LockFileEx:PROC
+EXTERNDEF LockResource:PROC
+EXTERNDEF MapUserPhysicalPages:PROC
+EXTERNDEF MapUserPhysicalPagesScatter:PROC
+EXTERNDEF MapViewOfFile:PROC
+EXTERNDEF MapViewOfFileEx:PROC
+EXTERNDEF MapViewOfFileExNuma:PROC
+EXTERNDEF MapViewOfFileFromApp:PROC
+EXTERNDEF Module32First:PROC
+EXTERNDEF Module32FirstW:PROC
+EXTERNDEF Module32Next:PROC
+EXTERNDEF Module32NextW:PROC
+EXTERNDEF MoveFileA:PROC
+MoveFile EQU <MoveFileA>
+
+EXTERNDEF MoveFileExA:PROC
+MoveFileEx EQU <MoveFileExA>
+
+EXTERNDEF MoveFileExW:PROC
+EXTERNDEF MoveFileTransactedA:PROC
+MoveFileTransacted EQU <MoveFileTransactedA>
+
+EXTERNDEF MoveFileTransactedW:PROC
+EXTERNDEF MoveFileW:PROC
+EXTERNDEF MoveFileWithProgressA:PROC
+MoveFileWithProgress EQU <MoveFileWithProgressA>
+
+EXTERNDEF MoveFileWithProgressW:PROC
+EXTERNDEF MulDiv:PROC
+EXTERNDEF MultiByteToWideChar:PROC
+EXTERNDEF NeedCurrentDirectoryForExePathA:PROC
+NeedCurrentDirectoryForExePath EQU <NeedCurrentDirectoryForExePathA>
+
+EXTERNDEF NeedCurrentDirectoryForExePathW:PROC
+EXTERNDEF NlsCheckPolicy:PROC
+EXTERNDEF NlsGetCacheUpdateCount:PROC
+EXTERNDEF NlsUpdateLocale:PROC
+EXTERNDEF NlsUpdateSystemLocale:PROC
+EXTERNDEF NormalizeString:PROC
+EXTERNDEF NotifyMountMgr:PROC
+EXTERNDEF NotifyUILanguageChange:PROC
+EXTERNDEF NtVdm64CreateProcessInternalW:PROC
+EXTERNDEF OOBEComplete:PROC
+EXTERNDEF OfferVirtualMemory:PROC
+EXTERNDEF OpenConsoleW:PROC
+EXTERNDEF OpenConsoleWStub:PROC
+EXTERNDEF OpenEventA:PROC
+OpenEvent EQU <OpenEventA>
+
+EXTERNDEF OpenEventW:PROC
+EXTERNDEF OpenFile:PROC
+EXTERNDEF OpenFileById:PROC
+EXTERNDEF OpenFileMappingA:PROC
+OpenFileMapping EQU <OpenFileMappingA>
+
+EXTERNDEF OpenFileMappingW:PROC
+EXTERNDEF OpenJobObjectA:PROC
+OpenJobObject EQU <OpenJobObjectA>
+
+EXTERNDEF OpenJobObjectW:PROC
+EXTERNDEF OpenMutexA:PROC
+OpenMutex EQU <OpenMutexA>
+
+EXTERNDEF OpenMutexW:PROC
+EXTERNDEF OpenPackageInfoByFullName:PROC
+EXTERNDEF OpenPrivateNamespaceA:PROC
+OpenPrivateNamespace EQU <OpenPrivateNamespaceA>
+
+EXTERNDEF OpenPrivateNamespaceW:PROC
+EXTERNDEF OpenProcess:PROC
+EXTERNDEF OpenProcessToken:PROC
+EXTERNDEF OpenProfileUserMapping:PROC
+EXTERNDEF OpenSemaphoreA:PROC
+OpenSemaphore EQU <OpenSemaphoreA>
+
+EXTERNDEF OpenSemaphoreW:PROC
+EXTERNDEF OpenState:PROC
+EXTERNDEF OpenStateExplicit:PROC
+EXTERNDEF OpenThread:PROC
+EXTERNDEF OpenThreadToken:PROC
+EXTERNDEF OpenWaitableTimerA:PROC
+OpenWaitableTimer EQU <OpenWaitableTimerA>
+
+EXTERNDEF OpenWaitableTimerW:PROC
+EXTERNDEF OutputDebugStringA:PROC
+OutputDebugString EQU <OutputDebugStringA>
+
+EXTERNDEF OutputDebugStringW:PROC
+EXTERNDEF PackageFamilyNameFromFullName:PROC
+EXTERNDEF PackageFamilyNameFromId:PROC
+EXTERNDEF PackageFullNameFromId:PROC
+EXTERNDEF PackageIdFromFullName:PROC
+EXTERNDEF PackageNameAndPublisherIdFromFamilyName:PROC
+EXTERNDEF ParseApplicationUserModelId:PROC
+EXTERNDEF PeekConsoleInputA:PROC
+PeekConsoleInput EQU <PeekConsoleInputA>
+
+EXTERNDEF PeekConsoleInputW:PROC
+EXTERNDEF PeekNamedPipe:PROC
+EXTERNDEF PostQueuedCompletionStatus:PROC
+EXTERNDEF PowerClearRequest:PROC
+EXTERNDEF PowerCreateRequest:PROC
+EXTERNDEF PowerSetRequest:PROC
+EXTERNDEF PrefetchVirtualMemory:PROC
+EXTERNDEF PrepareTape:PROC
+EXTERNDEF PrivCopyFileExW:PROC
+EXTERNDEF PrivMoveFileIdentityW:PROC
+EXTERNDEF Process32First:PROC
+EXTERNDEF Process32FirstW:PROC
+EXTERNDEF Process32Next:PROC
+EXTERNDEF Process32NextW:PROC
+EXTERNDEF ProcessIdToSessionId:PROC
+EXTERNDEF PssCaptureSnapshot:PROC
+EXTERNDEF PssDuplicateSnapshot:PROC
+EXTERNDEF PssFreeSnapshot:PROC
+EXTERNDEF PssQuerySnapshot:PROC
+EXTERNDEF PssWalkMarkerCreate:PROC
+EXTERNDEF PssWalkMarkerFree:PROC
+EXTERNDEF PssWalkMarkerGetPosition:PROC
+EXTERNDEF PssWalkMarkerRewind:PROC
+EXTERNDEF PssWalkMarkerSeek:PROC
+EXTERNDEF PssWalkMarkerSeekToBeginning:PROC
+EXTERNDEF PssWalkMarkerSetPosition:PROC
+EXTERNDEF PssWalkMarkerTell:PROC
+EXTERNDEF PssWalkSnapshot:PROC
+EXTERNDEF PulseEvent:PROC
+EXTERNDEF PurgeComm:PROC
+EXTERNDEF QueryActCtxSettingsW:PROC
+EXTERNDEF QueryActCtxSettingsWWorker:PROC
+EXTERNDEF QueryActCtxW:PROC
+EXTERNDEF QueryActCtxWWorker:PROC
+EXTERNDEF QueryDepthSList:PROC
+EXTERNDEF QueryDosDeviceA:PROC
+QueryDosDevice EQU <QueryDosDeviceA>
+
+EXTERNDEF QueryDosDeviceW:PROC
+EXTERNDEF QueryFullProcessImageNameA:PROC
+QueryFullProcessImageName EQU <QueryFullProcessImageNameA>
+
+EXTERNDEF QueryFullProcessImageNameW:PROC
+EXTERNDEF QueryIdleProcessorCycleTime:PROC
+EXTERNDEF QueryIdleProcessorCycleTimeEx:PROC
+EXTERNDEF QueryInformationJobObject:PROC
+EXTERNDEF QueryIoRateControlInformationJobObject:PROC
+EXTERNDEF QueryMemoryResourceNotification:PROC
+EXTERNDEF QueryPerformanceCounter:PROC
+EXTERNDEF QueryPerformanceFrequency:PROC
+EXTERNDEF QueryProcessAffinityUpdateMode:PROC
+EXTERNDEF QueryProcessCycleTime:PROC
+EXTERNDEF QueryProtectedPolicy:PROC
+EXTERNDEF QueryThreadCycleTime:PROC
+EXTERNDEF QueryThreadProfiling:PROC
+EXTERNDEF QueryThreadpoolStackInformation:PROC
+EXTERNDEF QueryUnbiasedInterruptTime:PROC
+EXTERNDEF QueueUserAPC:PROC
+EXTERNDEF QueueUserWorkItem:PROC
+EXTERNDEF QuirkGetData2Worker:PROC
+EXTERNDEF QuirkGetDataWorker:PROC
+EXTERNDEF QuirkIsEnabled2Worker:PROC
+EXTERNDEF QuirkIsEnabled3Worker:PROC
+EXTERNDEF QuirkIsEnabledForPackage2Worker:PROC
+EXTERNDEF QuirkIsEnabledForPackage3Worker:PROC
+EXTERNDEF QuirkIsEnabledForPackage4Worker:PROC
+EXTERNDEF QuirkIsEnabledForPackageWorker:PROC
+EXTERNDEF QuirkIsEnabledForProcessWorker:PROC
+EXTERNDEF QuirkIsEnabledWorker:PROC
+EXTERNDEF RaiseException:PROC
+EXTERNDEF RaiseFailFastException:PROC
+EXTERNDEF RaiseInvalid16BitExeError:PROC
+EXTERNDEF ReOpenFile:PROC
+EXTERNDEF ReadConsoleA:PROC
+ReadConsole EQU <ReadConsoleA>
+
+EXTERNDEF ReadConsoleInputA:PROC
+ReadConsoleInput EQU <ReadConsoleInputA>
+
+EXTERNDEF ReadConsoleInputExA:PROC
+ReadConsoleInputEx EQU <ReadConsoleInputExA>
+
+EXTERNDEF ReadConsoleInputExW:PROC
+EXTERNDEF ReadConsoleInputW:PROC
+EXTERNDEF ReadConsoleOutputA:PROC
+ReadConsoleOutput EQU <ReadConsoleOutputA>
+
+EXTERNDEF ReadConsoleOutputAttribute:PROC
+EXTERNDEF ReadConsoleOutputCharacterA:PROC
+ReadConsoleOutputCharacter EQU <ReadConsoleOutputCharacterA>
+
+EXTERNDEF ReadConsoleOutputCharacterW:PROC
+EXTERNDEF ReadConsoleOutputW:PROC
+EXTERNDEF ReadConsoleW:PROC
+EXTERNDEF ReadDirectoryChangesExW:PROC
+EXTERNDEF ReadDirectoryChangesW:PROC
+EXTERNDEF ReadFile:PROC
+EXTERNDEF ReadFileEx:PROC
+EXTERNDEF ReadFileScatter:PROC
+EXTERNDEF ReadProcessMemory:PROC
+EXTERNDEF ReadThreadProfilingData:PROC
+EXTERNDEF ReclaimVirtualMemory:PROC
+EXTERNDEF RegCloseKey:PROC
+EXTERNDEF RegCopyTreeW:PROC
+EXTERNDEF RegCreateKeyExA:PROC
+RegCreateKeyEx EQU <RegCreateKeyExA>
+
+EXTERNDEF RegCreateKeyExW:PROC
+EXTERNDEF RegDeleteKeyExA:PROC
+RegDeleteKeyEx EQU <RegDeleteKeyExA>
+
+EXTERNDEF RegDeleteKeyExW:PROC
+EXTERNDEF RegDeleteTreeA:PROC
+RegDeleteTree EQU <RegDeleteTreeA>
+
+EXTERNDEF RegDeleteTreeW:PROC
+EXTERNDEF RegDeleteValueA:PROC
+RegDeleteValue EQU <RegDeleteValueA>
+
+EXTERNDEF RegDeleteValueW:PROC
+EXTERNDEF RegDisablePredefinedCacheEx:PROC
+EXTERNDEF RegEnumKeyExA:PROC
+RegEnumKeyEx EQU <RegEnumKeyExA>
+
+EXTERNDEF RegEnumKeyExW:PROC
+EXTERNDEF RegEnumValueA:PROC
+RegEnumValue EQU <RegEnumValueA>
+
+EXTERNDEF RegEnumValueW:PROC
+EXTERNDEF RegFlushKey:PROC
+EXTERNDEF RegGetKeySecurity:PROC
+EXTERNDEF RegGetValueA:PROC
+RegGetValue EQU <RegGetValueA>
+
+EXTERNDEF RegGetValueW:PROC
+EXTERNDEF RegLoadKeyA:PROC
+RegLoadKey EQU <RegLoadKeyA>
+
+EXTERNDEF RegLoadKeyW:PROC
+EXTERNDEF RegLoadMUIStringA:PROC
+RegLoadMUIString EQU <RegLoadMUIStringA>
+
+EXTERNDEF RegLoadMUIStringW:PROC
+EXTERNDEF RegNotifyChangeKeyValue:PROC
+EXTERNDEF RegOpenCurrentUser:PROC
+EXTERNDEF RegOpenKeyExA:PROC
+RegOpenKeyEx EQU <RegOpenKeyExA>
+
+EXTERNDEF RegOpenKeyExW:PROC
+EXTERNDEF RegOpenUserClassesRoot:PROC
+EXTERNDEF RegQueryInfoKeyA:PROC
+RegQueryInfoKey EQU <RegQueryInfoKeyA>
+
+EXTERNDEF RegQueryInfoKeyW:PROC
+EXTERNDEF RegQueryValueExA:PROC
+RegQueryValueEx EQU <RegQueryValueExA>
+
+EXTERNDEF RegQueryValueExW:PROC
+EXTERNDEF RegRestoreKeyA:PROC
+RegRestoreKey EQU <RegRestoreKeyA>
+
+EXTERNDEF RegRestoreKeyW:PROC
+EXTERNDEF RegSaveKeyExA:PROC
+RegSaveKeyEx EQU <RegSaveKeyExA>
+
+EXTERNDEF RegSaveKeyExW:PROC
+EXTERNDEF RegSetKeySecurity:PROC
+EXTERNDEF RegSetValueExA:PROC
+RegSetValueEx EQU <RegSetValueExA>
+
+EXTERNDEF RegSetValueExW:PROC
+EXTERNDEF RegUnLoadKeyA:PROC
+RegUnLoadKey EQU <RegUnLoadKeyA>
+
+EXTERNDEF RegUnLoadKeyW:PROC
+EXTERNDEF RegisterApplicationRecoveryCallback:PROC
+EXTERNDEF RegisterApplicationRestart:PROC
+EXTERNDEF RegisterBadMemoryNotification:PROC
+EXTERNDEF RegisterConsoleIME:PROC
+EXTERNDEF RegisterConsoleOS2:PROC
+EXTERNDEF RegisterConsoleVDM:PROC
+EXTERNDEF RegisterWaitForInputIdle:PROC
+EXTERNDEF RegisterWaitForSingleObject:PROC
+EXTERNDEF RegisterWaitForSingleObjectEx:PROC
+EXTERNDEF RegisterWaitUntilOOBECompleted:PROC
+EXTERNDEF RegisterWowBaseHandlers:PROC
+EXTERNDEF RegisterWowExec:PROC
+EXTERNDEF ReleaseActCtx:PROC
+EXTERNDEF ReleaseActCtxWorker:PROC
+EXTERNDEF ReleaseMutex:PROC
+EXTERNDEF ReleaseMutexWhenCallbackReturns:PROC
+EXTERNDEF ReleaseSRWLockExclusive:PROC
+EXTERNDEF ReleaseSRWLockShared:PROC
+EXTERNDEF ReleaseSemaphore:PROC
+EXTERNDEF ReleaseSemaphoreWhenCallbackReturns:PROC
+EXTERNDEF RemoveDirectoryA:PROC
+RemoveDirectory EQU <RemoveDirectoryA>
+
+EXTERNDEF RemoveDirectoryTransactedA:PROC
+RemoveDirectoryTransacted EQU <RemoveDirectoryTransactedA>
+
+EXTERNDEF RemoveDirectoryTransactedW:PROC
+EXTERNDEF RemoveDirectoryW:PROC
+EXTERNDEF RemoveDllDirectory:PROC
+EXTERNDEF RemoveLocalAlternateComputerNameA:PROC
+RemoveLocalAlternateComputerName EQU <RemoveLocalAlternateComputerNameA>
+
+EXTERNDEF RemoveLocalAlternateComputerNameW:PROC
+EXTERNDEF RemoveSecureMemoryCacheCallback:PROC
+EXTERNDEF RemoveVectoredContinueHandler:PROC
+EXTERNDEF RemoveVectoredExceptionHandler:PROC
+EXTERNDEF ReplaceFileA:PROC
+ReplaceFile EQU <ReplaceFileA>
+
+EXTERNDEF ReplaceFileW:PROC
+EXTERNDEF ReplacePartitionUnit:PROC
+EXTERNDEF RequestDeviceWakeup:PROC
+EXTERNDEF RequestWakeupLatency:PROC
+EXTERNDEF ResetEvent:PROC
+EXTERNDEF ResetWriteWatch:PROC
+EXTERNDEF ResizePseudoConsole:PROC
+EXTERNDEF ResolveDelayLoadedAPI:PROC
+EXTERNDEF ResolveDelayLoadsFromDll:PROC
+EXTERNDEF ResolveLocaleName:PROC
+EXTERNDEF RestoreLastError:PROC
+EXTERNDEF ResumeThread:PROC
+EXTERNDEF RtlCaptureContext:PROC
+EXTERNDEF RtlCaptureStackBackTrace:PROC
+EXTERNDEF RtlFillMemory:PROC
+EXTERNDEF RtlMoveMemory:PROC
+EXTERNDEF RtlPcToFileHeader:PROC
+EXTERNDEF RtlUnwind:PROC
+EXTERNDEF RtlZeroMemory:PROC
+EXTERNDEF ScrollConsoleScreenBufferA:PROC
+ScrollConsoleScreenBuffer EQU <ScrollConsoleScreenBufferA>
+
+EXTERNDEF ScrollConsoleScreenBufferW:PROC
+EXTERNDEF SearchPathA:PROC
+SearchPath EQU <SearchPathA>
+
+EXTERNDEF SearchPathW:PROC
+EXTERNDEF SetCachedSigningLevel:PROC
+EXTERNDEF SetCalendarInfoA:PROC
+SetCalendarInfo EQU <SetCalendarInfoA>
+
+EXTERNDEF SetCalendarInfoW:PROC
+EXTERNDEF SetComPlusPackageInstallStatus:PROC
+EXTERNDEF SetCommBreak:PROC
+EXTERNDEF SetCommConfig:PROC
+EXTERNDEF SetCommMask:PROC
+EXTERNDEF SetCommState:PROC
+EXTERNDEF SetCommTimeouts:PROC
+EXTERNDEF SetComputerNameA:PROC
+SetComputerName EQU <SetComputerNameA>
+
+EXTERNDEF SetComputerNameEx2W:PROC
+EXTERNDEF SetComputerNameExA:PROC
+SetComputerNameEx EQU <SetComputerNameExA>
+
+EXTERNDEF SetComputerNameExW:PROC
+EXTERNDEF SetComputerNameW:PROC
+EXTERNDEF SetConsoleActiveScreenBuffer:PROC
+EXTERNDEF SetConsoleCP:PROC
+EXTERNDEF SetConsoleCtrlHandler:PROC
+EXTERNDEF SetConsoleCursor:PROC
+EXTERNDEF SetConsoleCursorInfo:PROC
+EXTERNDEF SetConsoleCursorMode:PROC
+EXTERNDEF SetConsoleCursorPosition:PROC
+EXTERNDEF SetConsoleDisplayMode:PROC
+EXTERNDEF SetConsoleFont:PROC
+EXTERNDEF SetConsoleHardwareState:PROC
+EXTERNDEF SetConsoleHistoryInfo:PROC
+EXTERNDEF SetConsoleIcon:PROC
+EXTERNDEF SetConsoleInputExeNameA:PROC
+SetConsoleInputExeName EQU <SetConsoleInputExeNameA>
+
+EXTERNDEF SetConsoleInputExeNameW:PROC
+EXTERNDEF SetConsoleKeyShortcuts:PROC
+EXTERNDEF SetConsoleLocalEUDC:PROC
+EXTERNDEF SetConsoleMaximumWindowSize:PROC
+EXTERNDEF SetConsoleMenuClose:PROC
+EXTERNDEF SetConsoleMode:PROC
+EXTERNDEF SetConsoleNlsMode:PROC
+EXTERNDEF SetConsoleNumberOfCommandsA:PROC
+SetConsoleNumberOfCommands EQU <SetConsoleNumberOfCommandsA>
+
+EXTERNDEF SetConsoleNumberOfCommandsW:PROC
+EXTERNDEF SetConsoleOS2OemFormat:PROC
+EXTERNDEF SetConsoleOutputCP:PROC
+EXTERNDEF SetConsolePalette:PROC
+EXTERNDEF SetConsoleScreenBufferInfoEx:PROC
+EXTERNDEF SetConsoleScreenBufferSize:PROC
+EXTERNDEF SetConsoleTextAttribute:PROC
+EXTERNDEF SetConsoleTitleA:PROC
+SetConsoleTitle EQU <SetConsoleTitleA>
+
+EXTERNDEF SetConsoleTitleW:PROC
+EXTERNDEF SetConsoleWindowInfo:PROC
+EXTERNDEF SetCriticalSectionSpinCount:PROC
+EXTERNDEF SetCurrentConsoleFontEx:PROC
+EXTERNDEF SetCurrentDirectoryA:PROC
+SetCurrentDirectory EQU <SetCurrentDirectoryA>
+
+EXTERNDEF SetCurrentDirectoryW:PROC
+EXTERNDEF SetDefaultCommConfigA:PROC
+SetDefaultCommConfig EQU <SetDefaultCommConfigA>
+
+EXTERNDEF SetDefaultCommConfigW:PROC
+EXTERNDEF SetDefaultDllDirectories:PROC
+EXTERNDEF SetDllDirectoryA:PROC
+SetDllDirectory EQU <SetDllDirectoryA>
+
+EXTERNDEF SetDllDirectoryW:PROC
+EXTERNDEF SetDynamicTimeZoneInformation:PROC
+EXTERNDEF SetEndOfFile:PROC
+EXTERNDEF SetEnvironmentStringsA:PROC
+SetEnvironmentStrings EQU <SetEnvironmentStringsA>
+
+EXTERNDEF SetEnvironmentStringsW:PROC
+EXTERNDEF SetEnvironmentVariableA:PROC
+SetEnvironmentVariable EQU <SetEnvironmentVariableA>
+
+EXTERNDEF SetEnvironmentVariableW:PROC
+EXTERNDEF SetErrorMode:PROC
+EXTERNDEF SetEvent:PROC
+EXTERNDEF SetEventWhenCallbackReturns:PROC
+EXTERNDEF SetFileApisToANSI:PROC
+EXTERNDEF SetFileApisToOEM:PROC
+EXTERNDEF SetFileAttributesA:PROC
+SetFileAttributes EQU <SetFileAttributesA>
+
+EXTERNDEF SetFileAttributesTransactedA:PROC
+SetFileAttributesTransacted EQU <SetFileAttributesTransactedA>
+
+EXTERNDEF SetFileAttributesTransactedW:PROC
+EXTERNDEF SetFileAttributesW:PROC
+EXTERNDEF SetFileBandwidthReservation:PROC
+EXTERNDEF SetFileCompletionNotificationModes:PROC
+EXTERNDEF SetFileInformationByHandle:PROC
+EXTERNDEF SetFileIoOverlappedRange:PROC
+EXTERNDEF SetFilePointer:PROC
+EXTERNDEF SetFilePointerEx:PROC
+EXTERNDEF SetFileShortNameA:PROC
+SetFileShortName EQU <SetFileShortNameA>
+
+EXTERNDEF SetFileShortNameW:PROC
+EXTERNDEF SetFileTime:PROC
+EXTERNDEF SetFileValidData:PROC
+EXTERNDEF SetFirmwareEnvironmentVariableA:PROC
+SetFirmwareEnvironmentVariable EQU <SetFirmwareEnvironmentVariableA>
+
+EXTERNDEF SetFirmwareEnvironmentVariableExA:PROC
+SetFirmwareEnvironmentVariableEx EQU <SetFirmwareEnvironmentVariableExA>
+
+EXTERNDEF SetFirmwareEnvironmentVariableExW:PROC
+EXTERNDEF SetFirmwareEnvironmentVariableW:PROC
+EXTERNDEF SetHandleContext:PROC
+EXTERNDEF SetHandleCount:PROC
+EXTERNDEF SetHandleInformation:PROC
+EXTERNDEF SetInformationJobObject:PROC
+EXTERNDEF SetIoRateControlInformationJobObject:PROC
+EXTERNDEF SetLastConsoleEventActive:PROC
+EXTERNDEF SetLastError:PROC
+EXTERNDEF SetLocalPrimaryComputerNameA:PROC
+SetLocalPrimaryComputerName EQU <SetLocalPrimaryComputerNameA>
+
+EXTERNDEF SetLocalPrimaryComputerNameW:PROC
+EXTERNDEF SetLocalTime:PROC
+EXTERNDEF SetLocaleInfoA:PROC
+SetLocaleInfo EQU <SetLocaleInfoA>
+
+EXTERNDEF SetLocaleInfoW:PROC
+EXTERNDEF SetMailslotInfo:PROC
+EXTERNDEF SetMessageWaitingIndicator:PROC
+EXTERNDEF SetNamedPipeAttribute:PROC
+EXTERNDEF SetNamedPipeHandleState:PROC
+EXTERNDEF SetPriorityClass:PROC
+EXTERNDEF SetProcessAffinityMask:PROC
+EXTERNDEF SetProcessAffinityUpdateMode:PROC
+EXTERNDEF SetProcessDEPPolicy:PROC
+EXTERNDEF SetProcessDefaultCpuSets:PROC
+EXTERNDEF SetProcessDynamicEHContinuationTargets:PROC
+EXTERNDEF SetProcessInformation:PROC
+EXTERNDEF SetProcessMitigationPolicy:PROC
+EXTERNDEF SetProcessPreferredUILanguages:PROC
+EXTERNDEF SetProcessPriorityBoost:PROC
+EXTERNDEF SetProcessShutdownParameters:PROC
+EXTERNDEF SetProcessWorkingSetSize:PROC
+EXTERNDEF SetProcessWorkingSetSizeEx:PROC
+EXTERNDEF SetProtectedPolicy:PROC
+EXTERNDEF SetSearchPathMode:PROC
+EXTERNDEF SetStdHandle:PROC
+EXTERNDEF SetStdHandleEx:PROC
+EXTERNDEF SetSystemFileCacheSize:PROC
+EXTERNDEF SetSystemPowerState:PROC
+EXTERNDEF SetSystemTime:PROC
+EXTERNDEF SetSystemTimeAdjustment:PROC
+EXTERNDEF SetTapeParameters:PROC
+EXTERNDEF SetTapePosition:PROC
+EXTERNDEF SetTermsrvAppInstallMode:PROC
+EXTERNDEF SetThreadAffinityMask:PROC
+EXTERNDEF SetThreadContext:PROC
+EXTERNDEF SetThreadDescription:PROC
+EXTERNDEF SetThreadErrorMode:PROC
+EXTERNDEF SetThreadExecutionState:PROC
+EXTERNDEF SetThreadGroupAffinity:PROC
+EXTERNDEF SetThreadIdealProcessor:PROC
+EXTERNDEF SetThreadIdealProcessorEx:PROC
+EXTERNDEF SetThreadInformation:PROC
+EXTERNDEF SetThreadLocale:PROC
+EXTERNDEF SetThreadPreferredUILanguages:PROC
+EXTERNDEF SetThreadPriority:PROC
+EXTERNDEF SetThreadPriorityBoost:PROC
+EXTERNDEF SetThreadSelectedCpuSets:PROC
+EXTERNDEF SetThreadStackGuarantee:PROC
+EXTERNDEF SetThreadToken:PROC
+EXTERNDEF SetThreadUILanguage:PROC
+EXTERNDEF SetThreadpoolStackInformation:PROC
+EXTERNDEF SetThreadpoolThreadMaximum:PROC
+EXTERNDEF SetThreadpoolThreadMinimum:PROC
+EXTERNDEF SetThreadpoolTimer:PROC
+EXTERNDEF SetThreadpoolTimerEx:PROC
+EXTERNDEF SetThreadpoolWait:PROC
+EXTERNDEF SetThreadpoolWaitEx:PROC
+EXTERNDEF SetTimeZoneInformation:PROC
+EXTERNDEF SetTimerQueueTimer:PROC
+EXTERNDEF SetUnhandledExceptionFilter:PROC
+EXTERNDEF SetUserGeoID:PROC
+EXTERNDEF SetUserGeoName:PROC
+EXTERNDEF SetVDMCurrentDirectories:PROC
+EXTERNDEF SetVolumeLabelA:PROC
+SetVolumeLabel EQU <SetVolumeLabelA>
+
+EXTERNDEF SetVolumeLabelW:PROC
+EXTERNDEF SetVolumeMountPointA:PROC
+SetVolumeMountPoint EQU <SetVolumeMountPointA>
+
+EXTERNDEF SetVolumeMountPointW:PROC
+EXTERNDEF SetVolumeMountPointWStub:PROC
+EXTERNDEF SetWaitableTimer:PROC
+EXTERNDEF SetWaitableTimerEx:PROC
+EXTERNDEF SetXStateFeaturesMask:PROC
+EXTERNDEF SetupComm:PROC
+EXTERNDEF ShowConsoleCursor:PROC
+EXTERNDEF SignalObjectAndWait:PROC
+EXTERNDEF SizeofResource:PROC
+EXTERNDEF Sleep:PROC
+EXTERNDEF SleepConditionVariableCS:PROC
+EXTERNDEF SleepConditionVariableSRW:PROC
+EXTERNDEF SleepEx:PROC
+EXTERNDEF SortCloseHandle:PROC
+EXTERNDEF SortGetHandle:PROC
+EXTERNDEF StartThreadpoolIo:PROC
+EXTERNDEF SubmitThreadpoolWork:PROC
+EXTERNDEF SuspendThread:PROC
+EXTERNDEF SwitchToFiber:PROC
+EXTERNDEF SwitchToThread:PROC
+EXTERNDEF SystemTimeToFileTime:PROC
+EXTERNDEF SystemTimeToTzSpecificLocalTime:PROC
+EXTERNDEF SystemTimeToTzSpecificLocalTimeEx:PROC
+EXTERNDEF TerminateJobObject:PROC
+EXTERNDEF TerminateProcess:PROC
+EXTERNDEF TerminateThread:PROC
+EXTERNDEF TermsrvAppInstallMode:PROC
+EXTERNDEF TermsrvConvertSysRootToUserDir:PROC
+EXTERNDEF TermsrvCreateRegEntry:PROC
+EXTERNDEF TermsrvDeleteKey:PROC
+EXTERNDEF TermsrvDeleteValue:PROC
+EXTERNDEF TermsrvGetPreSetValue:PROC
+EXTERNDEF TermsrvGetWindowsDirectoryA:PROC
+TermsrvGetWindowsDirectory EQU <TermsrvGetWindowsDirectoryA>
+
+EXTERNDEF TermsrvGetWindowsDirectoryW:PROC
+EXTERNDEF TermsrvOpenRegEntry:PROC
+EXTERNDEF TermsrvOpenUserClasses:PROC
+EXTERNDEF TermsrvRestoreKey:PROC
+EXTERNDEF TermsrvSetKeySecurity:PROC
+EXTERNDEF TermsrvSetValueKey:PROC
+EXTERNDEF TermsrvSyncUserIniFileExt:PROC
+EXTERNDEF Thread32First:PROC
+EXTERNDEF Thread32Next:PROC
+EXTERNDEF TlsAlloc:PROC
+EXTERNDEF TlsFree:PROC
+EXTERNDEF TlsGetValue:PROC
+EXTERNDEF TlsSetValue:PROC
+EXTERNDEF Toolhelp32ReadProcessMemory:PROC
+EXTERNDEF TransactNamedPipe:PROC
+EXTERNDEF TransmitCommChar:PROC
+EXTERNDEF TryAcquireSRWLockExclusive:PROC
+EXTERNDEF TryAcquireSRWLockShared:PROC
+EXTERNDEF TryEnterCriticalSection:PROC
+EXTERNDEF TrySubmitThreadpoolCallback:PROC
+EXTERNDEF TzSpecificLocalTimeToSystemTime:PROC
+EXTERNDEF TzSpecificLocalTimeToSystemTimeEx:PROC
+EXTERNDEF UTRegister:PROC
+EXTERNDEF UTUnRegister:PROC
+EXTERNDEF UnhandledExceptionFilter:PROC
+EXTERNDEF UnlockFile:PROC
+EXTERNDEF UnlockFileEx:PROC
+EXTERNDEF UnmapViewOfFile:PROC
+EXTERNDEF UnmapViewOfFileEx:PROC
+EXTERNDEF UnregisterApplicationRecoveryCallback:PROC
+EXTERNDEF UnregisterApplicationRestart:PROC
+EXTERNDEF UnregisterBadMemoryNotification:PROC
+EXTERNDEF UnregisterConsoleIME:PROC
+EXTERNDEF UnregisterWait:PROC
+EXTERNDEF UnregisterWaitEx:PROC
+EXTERNDEF UnregisterWaitUntilOOBECompleted:PROC
+EXTERNDEF UpdateCalendarDayOfWeek:PROC
+EXTERNDEF UpdateProcThreadAttribute:PROC
+EXTERNDEF UpdateResourceA:PROC
+UpdateResource EQU <UpdateResourceA>
+
+EXTERNDEF UpdateResourceW:PROC
+EXTERNDEF VDMConsoleOperation:PROC
+EXTERNDEF VDMOperationStarted:PROC
+EXTERNDEF VerLanguageNameA:PROC
+VerLanguageName EQU <VerLanguageNameA>
+
+EXTERNDEF VerLanguageNameW:PROC
+EXTERNDEF VerSetConditionMask:PROC
+EXTERNDEF VerifyConsoleIoHandle:PROC
+EXTERNDEF VerifyScripts:PROC
+EXTERNDEF VerifyVersionInfoA:PROC
+VerifyVersionInfo EQU <VerifyVersionInfoA>
+
+EXTERNDEF VerifyVersionInfoW:PROC
+EXTERNDEF VirtualAlloc:PROC
+EXTERNDEF VirtualAllocEx:PROC
+EXTERNDEF VirtualAllocExNuma:PROC
+EXTERNDEF VirtualFree:PROC
+EXTERNDEF VirtualFreeEx:PROC
+EXTERNDEF VirtualLock:PROC
+EXTERNDEF VirtualProtect:PROC
+EXTERNDEF VirtualProtectEx:PROC
+EXTERNDEF VirtualQuery:PROC
+EXTERNDEF VirtualQueryEx:PROC
+EXTERNDEF VirtualUnlock:PROC
+EXTERNDEF WTSGetActiveConsoleSessionId:PROC
+EXTERNDEF WaitCommEvent:PROC
+EXTERNDEF WaitForDebugEvent:PROC
+EXTERNDEF WaitForDebugEventEx:PROC
+EXTERNDEF WaitForMultipleObjects:PROC
+EXTERNDEF WaitForMultipleObjectsEx:PROC
+EXTERNDEF WaitForSingleObject:PROC
+EXTERNDEF WaitForSingleObjectEx:PROC
+EXTERNDEF WaitForThreadpoolIoCallbacks:PROC
+EXTERNDEF WaitForThreadpoolTimerCallbacks:PROC
+EXTERNDEF WaitForThreadpoolWaitCallbacks:PROC
+EXTERNDEF WaitForThreadpoolWorkCallbacks:PROC
+EXTERNDEF WaitNamedPipeA:PROC
+WaitNamedPipe EQU <WaitNamedPipeA>
+
+EXTERNDEF WaitNamedPipeW:PROC
+EXTERNDEF WakeAllConditionVariable:PROC
+EXTERNDEF WakeConditionVariable:PROC
+EXTERNDEF WerGetFlags:PROC
+EXTERNDEF WerGetFlagsWorker:PROC
+EXTERNDEF WerRegisterAdditionalProcess:PROC
+EXTERNDEF WerRegisterAppLocalDump:PROC
+EXTERNDEF WerRegisterCustomMetadata:PROC
+EXTERNDEF WerRegisterExcludedMemoryBlock:PROC
+EXTERNDEF WerRegisterFile:PROC
+EXTERNDEF WerRegisterFileWorker:PROC
+EXTERNDEF WerRegisterMemoryBlock:PROC
+EXTERNDEF WerRegisterMemoryBlockWorker:PROC
+EXTERNDEF WerRegisterRuntimeExceptionModule:PROC
+EXTERNDEF WerRegisterRuntimeExceptionModuleWorker:PROC
+EXTERNDEF WerSetFlags:PROC
+EXTERNDEF WerSetFlagsWorker:PROC
+EXTERNDEF WerUnregisterAdditionalProcess:PROC
+EXTERNDEF WerUnregisterAppLocalDump:PROC
+EXTERNDEF WerUnregisterCustomMetadata:PROC
+EXTERNDEF WerUnregisterExcludedMemoryBlock:PROC
+EXTERNDEF WerUnregisterFile:PROC
+EXTERNDEF WerUnregisterFileWorker:PROC
+EXTERNDEF WerUnregisterMemoryBlock:PROC
+EXTERNDEF WerUnregisterMemoryBlockWorker:PROC
+EXTERNDEF WerUnregisterRuntimeExceptionModule:PROC
+EXTERNDEF WerUnregisterRuntimeExceptionModuleWorker:PROC
+EXTERNDEF WerpGetDebugger:PROC
+EXTERNDEF WerpInitiateRemoteRecovery:PROC
+EXTERNDEF WerpLaunchAeDebug:PROC
+EXTERNDEF WerpNotifyLoadStringResourceWorker:PROC
+EXTERNDEF WerpNotifyUseStringResourceWorker:PROC
+EXTERNDEF WideCharToMultiByte:PROC
+EXTERNDEF WinExec:PROC
+EXTERNDEF Wow64DisableWow64FsRedirection:PROC
+EXTERNDEF Wow64EnableWow64FsRedirection:PROC
+EXTERNDEF Wow64GetThreadContext:PROC
+EXTERNDEF Wow64GetThreadSelectorEntry:PROC
+EXTERNDEF Wow64RevertWow64FsRedirection:PROC
+EXTERNDEF Wow64SetThreadContext:PROC
+EXTERNDEF Wow64SuspendThread:PROC
+EXTERNDEF Wow64Transition:PROC
+EXTERNDEF WriteConsoleA:PROC
+WriteConsole EQU <WriteConsoleA>
+
+EXTERNDEF WriteConsoleInputA:PROC
+WriteConsoleInput EQU <WriteConsoleInputA>
+
+EXTERNDEF WriteConsoleInputVDMA:PROC
+WriteConsoleInputVDM EQU <WriteConsoleInputVDMA>
+
+EXTERNDEF WriteConsoleInputVDMW:PROC
+EXTERNDEF WriteConsoleInputW:PROC
+EXTERNDEF WriteConsoleOutputA:PROC
+WriteConsoleOutput EQU <WriteConsoleOutputA>
+
+EXTERNDEF WriteConsoleOutputAttribute:PROC
+EXTERNDEF WriteConsoleOutputCharacterA:PROC
+WriteConsoleOutputCharacter EQU <WriteConsoleOutputCharacterA>
+
+EXTERNDEF WriteConsoleOutputCharacterW:PROC
+EXTERNDEF WriteConsoleOutputW:PROC
+EXTERNDEF WriteConsoleW:PROC
+EXTERNDEF WriteFile:PROC
+EXTERNDEF WriteFileEx:PROC
+EXTERNDEF WriteFileGather:PROC
+EXTERNDEF WritePrivateProfileSectionA:PROC
+WritePrivateProfileSection EQU <WritePrivateProfileSectionA>
+
+EXTERNDEF WritePrivateProfileSectionW:PROC
+EXTERNDEF WritePrivateProfileStringA:PROC
+WritePrivateProfileString EQU <WritePrivateProfileStringA>
+
+EXTERNDEF WritePrivateProfileStringW:PROC
+EXTERNDEF WritePrivateProfileStructA:PROC
+WritePrivateProfileStruct EQU <WritePrivateProfileStructA>
+
+EXTERNDEF WritePrivateProfileStructW:PROC
+EXTERNDEF WriteProcessMemory:PROC
+EXTERNDEF WriteProfileSectionA:PROC
+WriteProfileSection EQU <WriteProfileSectionA>
+
+EXTERNDEF WriteProfileSectionW:PROC
+EXTERNDEF WriteProfileStringA:PROC
+WriteProfileString EQU <WriteProfileStringA>
+
+EXTERNDEF WriteProfileStringW:PROC
+EXTERNDEF WriteTapemark:PROC
+EXTERNDEF ZombifyActCtx:PROC
+EXTERNDEF ZombifyActCtxWorker:PROC
+EXTERNDEF _hread:PROC
+EXTERNDEF _hwrite:PROC
+EXTERNDEF _lclose:PROC
+EXTERNDEF _lcreat:PROC
+EXTERNDEF _llseek:PROC
+EXTERNDEF _lopen:PROC
+EXTERNDEF _lread:PROC
+EXTERNDEF _lwrite:PROC
+EXTERNDEF lstrcatA:PROC
+lstrcat EQU <lstrcatA>
+
+EXTERNDEF lstrcatW:PROC
+EXTERNDEF lstrcmpA:PROC
+lstrcmp EQU <lstrcmpA>
+
+EXTERNDEF lstrcmpW:PROC
+EXTERNDEF lstrcmpiA:PROC
+lstrcmpi EQU <lstrcmpiA>
+
+EXTERNDEF lstrcmpiW:PROC
+EXTERNDEF lstrcpyA:PROC
+lstrcpy EQU <lstrcpyA>
+
+EXTERNDEF lstrcpyW:PROC
+EXTERNDEF lstrcpynA:PROC
+lstrcpyn EQU <lstrcpynA>
+
+EXTERNDEF lstrcpynW:PROC
+EXTERNDEF lstrlenA:PROC
+lstrlen EQU <lstrlenA>
+
+EXTERNDEF lstrlenW:PROC
+EXTERNDEF timeBeginPeriod:PROC
+EXTERNDEF timeEndPeriod:PROC
+EXTERNDEF timeGetDevCaps:PROC
+EXTERNDEF timeGetSystemTime:PROC
+EXTERNDEF timeGetTime:PROC

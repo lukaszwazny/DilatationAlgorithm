@@ -1,0 +1,50 @@
+ asm_function
+
+ Timestamp is 5fa2fe86 (Wed Nov  4 20:18:30 2020)
+
+ Preferred load address is 0000000180000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00001019H .text$mn                CODE
+ 0002:00000000 00000150H .rdata                  DATA
+ 0002:00000150 00000164H .edata                  DATA
+ 0002:000002b4 0000018bH .rdata$zzzdbg           DATA
+
+  Address         Publics by Value              Rva+Base               Lib:Object
+
+ 0000:00000000       __dynamic_value_reloc_table 0000000000000000     <absolute>
+ 0000:00000000       __hybrid_auxiliary_iat     0000000000000000     <absolute>
+ 0000:00000000       __guard_fids_table         0000000000000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   0000000000000000     <absolute>
+ 0000:00000000       __AbsoluteZero             0000000000000000     <absolute>
+ 0000:00000000       __enclave_config           0000000000000000     <absolute>
+ 0000:00000000       __guard_iat_table          0000000000000000     <absolute>
+ 0000:00000000       __guard_longjmp_table      0000000000000000     <absolute>
+ 0000:00000000       __guard_longjmp_count      0000000000000000     <absolute>
+ 0000:00000000       __guard_fids_count         0000000000000000     <absolute>
+ 0000:00000000       __hybrid_code_map_count    0000000000000000     <absolute>
+ 0000:00000000       __hybrid_code_map          0000000000000000     <absolute>
+ 0000:00000000       __guard_iat_count          0000000000000000     <absolute>
+ 0000:00000000       __volatile_metadata        0000000000000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   0000000000000000     <absolute>
+ 0000:00000100       __guard_flags              0000000000000100     <absolute>
+ 0001:00000010       dilatationAsm              0000000180001010 f   asm_function.obj
+
+ entry point at        0000:00000000
+
+ Static symbols
+
+ 0000:ffffb000       .debug$S                   0000000180000000     asm_function.exp
+ 0001:00000010       $$000000                   0000000180001010     asm_function.obj
+ 0002:00000150       .edata                     0000000180003150     asm_function.exp
+ 0002:00000178       rgpv                       0000000180003178     asm_function.exp
+ 0002:0000017c       rgszName                   000000018000317c     asm_function.exp
+ 0002:00000180       rgwOrd                     0000000180003180     asm_function.exp
+ 0002:00000182       szName                     0000000180003182     asm_function.exp
+ 0002:00000193       $N00001                    0000000180003193     asm_function.exp
+
+ Exports
+
+  ordinal    name
+
+        1    dilatationAsm

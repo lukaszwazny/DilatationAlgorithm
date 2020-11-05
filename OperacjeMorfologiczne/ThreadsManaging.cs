@@ -22,7 +22,10 @@ namespace OperacjeMorfologiczne
         private List<ImageWithIndex> imWithIndices;
 
         [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\c_function\CFunction.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr dilatation(IntPtr image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY);
+        private static extern IntPtr dilatationC(IntPtr image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY);
+
+        [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\asm_function\asm_function.dll")]
+        private static extern int dilatationAsm(IntPtr image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY);
 
 
         public struct IntPtrWithSize
@@ -60,9 +63,26 @@ namespace OperacjeMorfologiczne
             {
                 ImageWithIndex im = (ImageWithIndex) image;
                 //IntPtr transformedImage = Marshal.AllocHGlobal(im.image);
-                IntPtr transformedImage = dilatation(im.image, im.width, parameters.ImageHeight,
+                IntPtr transformedImage;
+                //c function
+                if (!(bool)parameters.Function)
+                {
+                    transformedImage = dilatationC(im.image, im.width, parameters.ImageHeight,
                     parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
-                this.transformedImages[im.index] = transformedImage;
+                    this.transformedImages[im.index] = transformedImage;
+                }
+                //asm function
+                else
+                {
+                    //transformedImage = dilatationAsm(im.image, im.width, parameters.ImageHeight, parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
+                    float hejo = (float)im.width;
+                    int a = dilatationAsm(im.image, im.width, parameters.ImageHeight,
+                    parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
+                    MessageBox.Show(""+dilatationAsm(im.image, im.width, parameters.ImageHeight,
+                    parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY));
+                }
+                
+                
                 Marshal.FreeHGlobal(im.image);
             }
             catch (AccessViolationException error)
