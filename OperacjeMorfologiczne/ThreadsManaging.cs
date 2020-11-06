@@ -22,10 +22,12 @@ namespace OperacjeMorfologiczne
         private List<ImageWithIndex> imWithIndices;
 
         [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\c_function\CFunction.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr dilatationC(IntPtr image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY);
+        private static extern IntPtr dilatationC(IntPtr image, IntPtr transImage, int imageWidth, int imageHeight, int elemWidth, int elemHeight, 
+            int centrPntX, int centrPntY);
 
         [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\asm_function\asm_function.dll")]
-        private static extern int dilatationAsm(IntPtr image, int imageWidth, int imageHeight, int elemWidth, int elemHeight, int centrPntX, int centrPntY);
+        private static extern IntPtr dilatationAsm(IntPtr image, IntPtr transImage, int imageWidth, int imageHeight, int elemWidth, int elemHeight, 
+            int centrPntX, int centrPntY);
 
 
         public struct IntPtrWithSize
@@ -67,18 +69,13 @@ namespace OperacjeMorfologiczne
                 //c function
                 if (!(bool)parameters.Function)
                 {
-                    transformedImage = dilatationC(im.image, im.width, parameters.ImageHeight,
+                    dilatationC(im.image, this.transformedImages[im.index], im.width, parameters.ImageHeight,
                     parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
-                    this.transformedImages[im.index] = transformedImage;
                 }
                 //asm function
                 else
                 {
-                    //transformedImage = dilatationAsm(im.image, im.width, parameters.ImageHeight, parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
-                    float hejo = (float)im.width;
-                    int a = dilatationAsm(im.image, im.width, parameters.ImageHeight,
-                    parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
-                    MessageBox.Show(""+dilatationAsm(im.image, im.width, parameters.ImageHeight,
+                    dilatationAsm(im.image, this.transformedImages[im.index], im.width, parameters.ImageHeight,
                     parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY));
                 }
                 
@@ -102,8 +99,7 @@ namespace OperacjeMorfologiczne
             int width = image.PixelWidth / n;
             Bitmap bmpImage = Converter.BitmapImage2Bitmap(image);
             List<IntPtrWithSize> result = new List<IntPtrWithSize>();
-            for (int i = 0; i < n; i++)
-            {
+            for (int i = 0; i < n; i++){
                 int widthOfThisPart = width;
                 if (i == n - 1)
                 {
@@ -122,13 +118,10 @@ namespace OperacjeMorfologiczne
                 IntPtrWithSize intPtrWithSize = new IntPtrWithSize(cropIntPtr, size, widthOfThisPart);
                 result.Add(intPtrWithSize);
             }
-
             return result;
-
         }
 
-        public static BitmapImage MergeImage(List<IntPtrWithSize> images, int heightOfOneImage)
-        {
+        public static BitmapImage MergeImage(List<IntPtrWithSize> images, int heightOfOneImage) {
             List<byte[]> imageBitmapsBytes = new List<byte[]>();
             int width = 0;
             foreach (var image in images)
@@ -141,18 +134,17 @@ namespace OperacjeMorfologiczne
             
             byte[] finalImageBytes = new byte[heightOfOneImage * width];
 
-            for (int i = 0; i < heightOfOneImage; i++)
-            {
+            for (int i = 0; i < heightOfOneImage; i++) {
                 for(int j = 0; j < images.Count; j++)
                 {
-                    Buffer.BlockCopy(imageBitmapsBytes[j], images[j].GetWidth() * i, finalImageBytes, width * i + j * images[0].GetWidth(), images[j].GetWidth());
+                    Buffer.BlockCopy(imageBitmapsBytes[j], images[j].GetWidth() * i, finalImageBytes, width * i + j * images[0].GetWidth(), 
+                        images[j].GetWidth());
                 }
             }
             
             Bitmap bitmapImage = Converter.BytesToBitmap(finalImageBytes, width, heightOfOneImage);
 
             return Converter.Bitmap2BitmapImage(bitmapImage);
-
         }
 
         //function: 0 for C, 1 for Asm
@@ -167,7 +159,7 @@ namespace OperacjeMorfologiczne
             {
                 unsafe
                 {
-                    transformedImages.Add(new IntPtr(null));
+                    transformedImages.Add(Marshal.AllocHGlobal(parameters.ImageHeight*imagesIntPtr[i].GetWidth()));
                 }
                 imWithIndices.Add(new ImageWithIndex(imagesIntPtr[i].GetPtr(), i, imagesIntPtr[i].GetWidth()));
                 Thread t = new Thread(performOperation)
@@ -179,14 +171,11 @@ namespace OperacjeMorfologiczne
 
         }
 
-        public void start()
-        {
-            for (int i = 0; i < parameters.NrOfThreads; i++)
-            {
+        public void start() {
+            for (int i = 0; i < parameters.NrOfThreads; i++) {
                 Threads[i].Start(imWithIndices[i]);
             }
-            for (int i = 0; i < parameters.NrOfThreads; i++)
-            {
+            for (int i = 0; i < parameters.NrOfThreads; i++) {
                 Threads[i].Join();
             }
         }

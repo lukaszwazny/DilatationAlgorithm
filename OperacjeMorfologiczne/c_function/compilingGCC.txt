@@ -1,0 +1,2 @@
+gcc -c -m64 c_function.c
+gcc -m64 -shared -o CFunction.dll c_function.o

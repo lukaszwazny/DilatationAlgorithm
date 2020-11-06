@@ -1,0 +1,4 @@
+
+
+ml64 /c /Cp asm_function.asm 
+link /DLL /SUBSYSTEM:WINDOWS /DEF:asm_function.def /MACHINE:x64 /NOENTRY asm_function.obj

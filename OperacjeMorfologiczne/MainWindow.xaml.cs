@@ -108,8 +108,6 @@ namespace OperacjeMorfologiczne
                 watch.Start();
                 //operation
                 action.start();
-//                IntPtr transformedIntPtrBytes = dilatation(imagePtr, width, height, Int32.Parse(ElemWidth.Text),
-//                    Int32.Parse(ElemHeight.Text), Int32.Parse(CentrPntX.Text), Int32.Parse(CentrPntY.Text));
                 watch.Stop();
                 speed.Text = ((((double) watch.ElapsedTicks) / ((double) Stopwatch.Frequency)) * 1000 * 1000) +
                              " \u00b5s";
