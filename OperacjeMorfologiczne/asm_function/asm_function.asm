@@ -18,7 +18,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 dilatationAsm PROC
 
-	;kopiowanie argumentów do rejestrów
+	;kopiowanie argumentów do rejestrów, te rejestry s¹ u¿ywane w ca³ej procedurze, gdy potrzebne jest u¿ycie danego argumentu
 	movd xmm0, rcx					;skopiuj 1. argument - src - do rejestru xmm0
 	movd xmm1, rdx					;skopiuj 2. argument - dst - do rejestru xmm1
 	mov rax, r8						;skopiuj 3. argument - imageWidth - do rejestru rax
@@ -48,8 +48,8 @@ petla2:
 	movd xmm8, ecx					;kopiuj j do rejestru xmm8
     pmuludq xmm8, xmm2				;j*imageWidth		
     movd xmm9, ebx					;kopiuj i do xmm9
-    paddusw xmm9, xmm8				;i + i*imageWidth
-	movd rsi, xmm9					;rsi = i + i*imageWidth
+    paddq xmm9, xmm8				;i + j*imageWidth
+	movd rsi, xmm9					;rsi = i + j*imageWidth
 	movd rdi, xmm0					;adres src do rdi
 	movd rax, xmm1					;adres dst do rax
     add rdi, rsi					;wyznacz adres kopiowanego piksela src i zapisz w rdi
@@ -68,7 +68,6 @@ checkIfEndOfPetla1:					;sprawdzanie warunku koñca pêtli 1
     cmp  ecx, eax					;porównaj j z imageHeight
     jl   petla1						;skocz do pocz¹tku pêtli, je¿eli j < imageHeight;
 
-
 	;algorytm dylatacji
 	;petla3
 	;for (int h = 0; h < imageHeight; h++)
@@ -81,13 +80,13 @@ petla3:
 	jmp checkIfEndOfPetla4			;skok do sprawdzania warunków koñca pêtli
 petla4:
 
-	;if (h <= centrPntY && w <= centrPntX)
+	;if (h < centrPntY && w < centrPntX)
 	movd eax, xmm7					;kopiuj centrPntY do eax
 	cmp ebx, eax					;porównaj h z centrPntY
-	jg nIf2							;je¿eli h <= centrPntY skocz do If2
+	ja nIf2							;je¿eli h < centrPntY skocz do If2
 	movd eax, xmm6					;kopiuj centrPntX do eax
 	cmp ecx, eax					;porównaj w z centrPntX
-	jg nIf2							;je¿eli w <= centrPntX skocz do If2
+	ja nIf2							;je¿eli w < centrPntX skocz do If2
 
 	mov edx, 0						;int czy_jest = 0
 	;for (int j = 0; j < elemHeight - h && h + j < imageHeight && !czy_jest; j++)
@@ -95,7 +94,7 @@ petla4:
 	jmp checkIfEndOfPetla5			;skok do sprawdzania warunków koñca pêtli
 petla5:
 	
-	;for (int i = 0; i < elemWidth - w && w + i < imageWidth && !czy_jest; i++)
+	;for (int i = 0; i < elemWidth - w && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
 	jmp checkIfEndOfPetla6			;skok do sprawdzania warunków koñca pêtli
 petla6:
@@ -104,7 +103,7 @@ petla6:
 	movd xmm8, esi					;kopiuj j do rejestru xmm8
 	pmuludq xmm8, xmm2				;j*imageWidth	
 	movd xmm9, r8d					;kopiuj i do xmm9
-    paddusw xmm9, xmm8				;i + j*imageWidth
+    paddq xmm9, xmm8				;i + j*imageWidth
 	movd rax, xmm9					;rax = i + i*imageWidth
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
@@ -117,7 +116,7 @@ petla6:
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
     pmuludq xmm8, xmm2				;h*imageWidth		
     movd xmm9, ecx					;kopiuj w do xmm9
-    paddusw xmm9, xmm8				;w + h*imageWidth
+    paddq xmm9, xmm8				;w + h*imageWidth
 	movd rax, xmm9					;rax = w + h*imageWidth
 	movd rdi, xmm1					;adres dst do rdi
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
@@ -132,9 +131,11 @@ checkIfEndOfPetla6:
 	jge koniecPetli5				;je¿eli i > (elemWidth - w) skocz na koniec petli 5
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
+	movd edi, xmm6					;kopiuj centrPntX do edi
+	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w)
-	jle koniecPetli5				;je¿eli i+w>imageHeight skocz na koniec petli 5
+	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
+	jle koniecPetli5				;je¿eli i+w-centrPntX>imageHeight skocz na koniec petli 5
 	cmp edx, 0						;porównaj czy_jest z 0
 	je petla6						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
 
@@ -155,19 +156,19 @@ checkIfEndOfPetla5:
 	jmp endOfPetla4					;je¿eli czy_jest = 0 skocz na koniec petli 4
 
 	;else
-	;if (h <= centrPntY)
+	;if (h < centrPntY)
 nIf2:
 	movd eax, xmm7					;kopiuj centrPntY do eax
 	cmp ebx, eax					;porównaj h z centrPntY
-	jg nIf3							;je¿eli h <= centrPntY skocz do If3
+	ja nIf3							;je¿eli h < centrPntY skocz do If3
 
 	mov edx, 0						;int czy_jest = 0
-	;for (int j = 0; j < elemHeight - h && h + j < imageHeight && !czy_jest; j++)
+	;for (int j = 0; j < elemHeight + h - centrPntX && h + j < imageHeight && !czy_jest; j++)
 	mov esi, 0						;int j = 0
 	jmp checkIfEndOfPetla7			;skok do sprawdzania warunków koñca pêtli
 petla7:
 	
-	;for (int i = 0; i < elemWidth && w + i < imageWidth && !czy_jest; i++)
+	;for (int i = 0; i < elemWidth && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
 	jmp checkIfEndOfPetla8			;skok do sprawdzania warunków koñca pêtli
 petla8:
@@ -180,7 +181,7 @@ petla8:
 	movd xmm8, esi					;kopiuj j do rejestru xmm8
 	pmuludq xmm8, xmm2				;j*imageWidth	
 	movd xmm9, eax					;kopiuj (w - centrPntX + i) do xmm9
-    paddusw xmm9, xmm8				;(w - centrPntX + i) + (j*imageWidth)
+    paddq xmm9, xmm8				;(w - centrPntX + i) + (j*imageWidth)
 	movd rax, xmm9					;rax = (w - centrPntX + i) + (j*imageWidth)
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
@@ -193,7 +194,7 @@ petla8:
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
     pmuludq xmm8, xmm2				;h*imageWidth		
     movd xmm9, ecx					;kopiuj w do xmm9
-    paddusw xmm9, xmm8				;w + h*imageWidth
+    paddq xmm9, xmm8				;w + h*imageWidth
 	movd rax, xmm9					;rax = w + h*imageWidth
 	movd rdi, xmm1					;adres dst do rdi
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
@@ -208,9 +209,11 @@ checkIfEndOfPetla8:
 	jge koniecPetli7				;je¿eli i > elemWidth skocz na koniec petli 7
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
+	movd edi, xmm6					;kopiuj centrPntX do edi
+	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w)
-	jle koniecPetli7				;je¿eli i+w>imageHeight skocz na koniec petli 7
+	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
+	jle koniecPetli7				;je¿eli i+w-centrPntX>imageHeight skocz na koniec petli 7
 	cmp edx, 0						;porównaj czy_jest z 0
 	je petla8						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
 
@@ -218,9 +221,11 @@ koniecPetli7:
 	add esi, 1						;j++
 checkIfEndOfPetla7:
 	movd eax, xmm5					;kopiuj elemHeight do eax
-	sub eax, ebx					;elemHeight - h
-	cmp esi, eax					;porównaj j z (elemHeight - h)
-	jge endOfPetla4					;je¿eli j >= (elemHeight - h) skocz na koniec petli 4
+	add eax, ebx					;elemHeight + h
+	movd edi, xmm7					;kopiuj centrPntY do edi
+	sub eax, edi					;(elemHeight + h) - centrPntY
+	cmp esi, eax					;porównaj j z (elemHeight + h - centrPntY)
+	jge endOfPetla4					;je¿eli j >= (elemHeight + h - centrPntY) skocz na koniec petli 4
 	mov eax, esi					;kopiuj j do eax
 	add eax, ebx					;j + h
 	movd edi, xmm3					;kopiuj imageHeight do edi
@@ -230,11 +235,11 @@ checkIfEndOfPetla7:
 	je petla7						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
 	jmp endOfPetla4					;je¿eli czy_jest = 0 skocz na koniec petli 4
 
-	;else if (w <= centrPntX)
+	;else if (w < centrPntX)
 nIf3:
 	movd eax, xmm6					;kopiuj centrPntX do eax
 	cmp ecx, eax					;porównaj w z centrPntX
-	jg nIf4							;je¿eli w <= centrPntX skocz do If4	
+	ja nIf4							;je¿eli w > centrPntX skocz do If4	
 	
 	mov edx, 0						;int czy_jest = 0
 	;for (int j = 0; j < elemHeight && h + j < imageHeight && !czy_jest; j++)
@@ -242,7 +247,7 @@ nIf3:
 	jmp checkIfEndOfPetla9			;skok do sprawdzania warunków koñca pêtli
 petla9:
 	
-	;for (int i = 0; i < elemWidth - w && w + i < imageWidth && !czy_jest; i++)
+	;for (int i = 0; i < elemWidth + w - centrPntX && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
 	jmp checkIfEndOfPetla10			;skok do sprawdzania warunków koñca pêtli
 petla10:
@@ -253,12 +258,12 @@ petla10:
 	movd rax, xmm2					;kopiuj imageWidth do rax
 	movd xmm9, rax					;kopiuj imageWidth do xmm9
 	pmuludq xmm9, xmm7				;imageWidth * centrPntY 
-	psubusw xmm8, xmm9   			;j*imageWidth - imageWidth * centrPntY 
+	psubq xmm8, xmm9   				;j*imageWidth - imageWidth * centrPntY 
 	movd xmm9, r8d					;kopiuj i do xmm9
-    paddusw xmm9, xmm8				;i + j*imageWidth - imageWidth * centrPntY 
+    paddq xmm9, xmm8				;i + j*imageWidth - imageWidth * centrPntY 
 	movd xmm8, ebx					;kopiuj h do xmm8
 	pmuludq xmm8, xmm2				;h*imageWidth
-	paddusw xmm9, xmm8				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY 
+	paddq xmm9, xmm8				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY 
 	movd rax, xmm9					;rax = h*imageWidth + i + j*imageWidth - imageWidth * centrPntY
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
@@ -271,7 +276,7 @@ petla10:
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
     pmuludq xmm8, xmm2				;h*imageWidth		
     movd xmm9, ecx					;kopiuj w do xmm9
-    paddusw xmm9, xmm8				;w + h*imageWidth
+    paddq xmm9, xmm8				;w + h*imageWidth
 	movd rax, xmm9					;rax = w + h*imageWidth
 	movd rdi, xmm1					;adres dst do rdi
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
@@ -281,13 +286,17 @@ koniecPetli10:
 	add r8d, 1						;i++
 checkIfEndOfPetla10:
 	movd eax, xmm4					;koiuj elemWidth do eax
-	sub eax, ecx					;elemWidth - w
-	cmp r8d, eax					;porównaj i z (elemWIdth - w)
+	add eax, ecx					;elemWidth + w
+	movd edi, xmm6					;kopiuj centrPntX do edi
+	sub eax, edi					;elemWidth + w - centrPntX
+	cmp r8d, eax					;porównaj i z (elemWidth + w - centrPntX)
 	jge koniecPetli9				;je¿eli i > (elemWidth - w) skocz na koniec petli 5
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
+	movd edi, xmm6					;kopiuj centrPntX do edi
+	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w)
+	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
 	jle koniecPetli9				;je¿eli i+w>imageHeight skocz na koniec petli 5
 	cmp edx, 0						;porównaj czy_jest z 0
 	je petla10						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
@@ -316,7 +325,7 @@ nIf4:
 	jmp checkIfEndOfPetla11			;skok do sprawdzania warunków koñca pêtli
 petla11:
 	
-	;for (int i = 0; i < elemWidth && w + i < imageWidth && !czy_jest; i++)
+	;for (int i = 0; i < elemWidth && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
 	jmp checkIfEndOfPetla12			;skok do sprawdzania warunków koñca pêtli
 petla12:
@@ -327,15 +336,15 @@ petla12:
 	movd rax, xmm2					;kopiuj imageWidth do rax
 	movd xmm9, rax					;kopiuj imageWidth do xmm9
 	pmuludq xmm9, xmm7				;imageWidth * centrPntY 
-	psubusw xmm8, xmm9   			;j*imageWidth - imageWidth * centrPntY 
+	psubq xmm8, xmm9   				;j*imageWidth - imageWidth * centrPntY 
 	movd xmm9, r8d					;kopiuj i do xmm9
-    paddusw xmm9, xmm8				;i + j*imageWidth - imageWidth * centrPntY 
+    paddq xmm9, xmm8				;i + j*imageWidth - imageWidth * centrPntY 
 	movd xmm8, ebx					;kopiuj h do xmm8
 	pmuludq xmm8, xmm2				;h*imageWidth
-	paddusw xmm9, xmm8				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY 
-	psubusw xmm9, xmm6				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY - centrPntX
+	paddq xmm9, xmm8				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY 
+	psubq xmm9, xmm6				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY - centrPntX
 	movd xmm8, ecx					;kopiuj w do xmm8
-	paddusw xmm9, xmm8				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY - centrPntX + w
+	paddq xmm9, xmm8				;h*imageWidth + i + j*imageWidth - imageWidth * centrPntY - centrPntX + w
 	movd rax, xmm9					;rax = h*imageWidth + i + j*imageWidth - imageWidth * centrPntY - centrPntX + w
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
@@ -348,7 +357,7 @@ petla12:
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
     pmuludq xmm8, xmm2				;h*imageWidth		
     movd xmm9, ecx					;kopiuj w do xmm9
-    paddusw xmm9, xmm8				;w + h*imageWidth
+    paddq xmm9, xmm8				;w + h*imageWidth
 	movd rax, xmm9					;rax = w + h*imageWidth
 	movd rdi, xmm1					;adres dst do rdi
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
@@ -362,8 +371,10 @@ checkIfEndOfPetla12:
 	jge koniecPetli11				;je¿eli i > elemWidth skocz na koniec petli 5
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
+	movd edi, xmm6					;kopiuj centrPntX do edi
+	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w)
+	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
 	jle koniecPetli11				;je¿eli i+w>imageHeight skocz na koniec petli 5
 	cmp edx, 0						;porównaj czy_jest z 0
 	je petla12						;je¿eli czy_jest!=0 skocz na pocz¹tek petli

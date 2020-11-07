@@ -38,6 +38,7 @@ namespace OperacjeMorfologiczne
         {
             InitializeComponent();
             threads.Text = Environment.ProcessorCount.ToString();
+            Threads.Text = Environment.ProcessorCount.ToString();
         }
 
         private void DodajObraz_OnClick(object sender, RoutedEventArgs e)

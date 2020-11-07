@@ -17,7 +17,7 @@ namespace OperacjeMorfologiczne
     {
         private List<Thread> Threads;
         private List<IntPtr> transformedImages;
-        private Params parameters;
+        private static Params parameters;
         private List<IntPtrWithSize> imagesIntPtr;
         private List<ImageWithIndex> imWithIndices;
 
@@ -32,16 +32,18 @@ namespace OperacjeMorfologiczne
 
         public struct IntPtrWithSize
         {
-            public IntPtrWithSize(IntPtr ptr, int size, int width) : this()
+            public IntPtrWithSize(IntPtr ptr, int size, int width, int extraWidth) : this()
             {
                 this.ptr = ptr;
                 this.size = size;
                 this.width = width;
+                this.extraWidth = extraWidth;
             }
 
             private IntPtr ptr;
             private int size;
             private int width;
+            private int extraWidth;
 
             public IntPtr GetPtr()
             {
@@ -57,6 +59,11 @@ namespace OperacjeMorfologiczne
             {
                 return this.width;
             }
+
+            public int GetExtraWidth()
+            {
+                return this.extraWidth;
+            }
         }
 
         public void performOperation(Object image)
@@ -65,18 +72,17 @@ namespace OperacjeMorfologiczne
             {
                 ImageWithIndex im = (ImageWithIndex) image;
                 //IntPtr transformedImage = Marshal.AllocHGlobal(im.image);
-                IntPtr transformedImage;
                 //c function
                 if (!(bool)parameters.Function)
                 {
-                    dilatationC(im.image, this.transformedImages[im.index], im.width, parameters.ImageHeight,
+                    dilatationC(im.image, this.transformedImages[im.index], im.extraWidth, parameters.ImageHeight,
                     parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
                 }
                 //asm function
                 else
                 {
-                    dilatationAsm(im.image, this.transformedImages[im.index], im.width, parameters.ImageHeight,
-                    parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY));
+                    dilatationAsm(im.image, this.transformedImages[im.index], im.extraWidth, parameters.ImageHeight,
+                    parameters.ElemWidth, parameters.ElemHeight, parameters.CentrPntX, parameters.CentrPntY);
                 }
                 
                 
@@ -106,7 +112,38 @@ namespace OperacjeMorfologiczne
                     int extraWidth = image.PixelWidth - (width * n);
                     widthOfThisPart += extraWidth;
                 }
-                Rectangle cropArea = new Rectangle(0 + i * width, 0, widthOfThisPart, image.PixelHeight);
+
+                //szerokość bez dodatkowych kolumn
+                int orgWidthOfThisPart = widthOfThisPart;
+
+                //add columns from adjacent parts (just for good result at the ends of part)
+                int leftAdd = parameters.CentrPntX;
+                int rightAdd = parameters.ElemWidth - parameters.CentrPntX - 1;
+                if (i == 0)
+                {
+                    widthOfThisPart += rightAdd;
+                }
+                else if (i == n - 1)
+                {
+                    widthOfThisPart += leftAdd;
+                }
+                else
+                {
+                    widthOfThisPart += rightAdd;
+                    widthOfThisPart += leftAdd;
+                }
+
+                //zabezpieczenie przed przekroczeniem zakresu z prawej strony
+                if(Math.Max(i * width - leftAdd, 0) + widthOfThisPart > image.PixelWidth)
+                {
+                    widthOfThisPart = image.PixelWidth - Math.Max(i * width - leftAdd, 0);
+                }
+
+                Rectangle cropArea;
+                if (i == 0)
+                    cropArea = new Rectangle(0, 0, widthOfThisPart, image.PixelHeight);
+                else
+                    cropArea = new Rectangle(Math.Max(i * width - leftAdd, 0), 0, widthOfThisPart, image.PixelHeight);
 
                 Bitmap bmpCrop = bmpImage.Clone(cropArea,
                     bmpImage.PixelFormat);
@@ -115,7 +152,7 @@ namespace OperacjeMorfologiczne
                 int size = Converter.GetBytesSize(bmpBytes);
                 IntPtr cropIntPtr = Converter.ByteToIntPtr(Converter.BitmapToBytes(bmpCrop));
 
-                IntPtrWithSize intPtrWithSize = new IntPtrWithSize(cropIntPtr, size, widthOfThisPart);
+                IntPtrWithSize intPtrWithSize = new IntPtrWithSize(cropIntPtr, size, orgWidthOfThisPart, widthOfThisPart);
                 result.Add(intPtrWithSize);
             }
             return result;
@@ -137,7 +174,7 @@ namespace OperacjeMorfologiczne
             for (int i = 0; i < heightOfOneImage; i++) {
                 for(int j = 0; j < images.Count; j++)
                 {
-                    Buffer.BlockCopy(imageBitmapsBytes[j], images[j].GetWidth() * i, finalImageBytes, width * i + j * images[0].GetWidth(), 
+                    Buffer.BlockCopy(imageBitmapsBytes[j], (j == 0 ? (images[j].GetExtraWidth() * i) : ((images[j].GetExtraWidth() * i) + parameters.CentrPntX)), finalImageBytes, width * i + j * images[0].GetWidth(), 
                         images[j].GetWidth());
                 }
             }
@@ -148,20 +185,20 @@ namespace OperacjeMorfologiczne
         }
 
         //function: 0 for C, 1 for Asm
-        public ThreadsManaging(BitmapImage image, Params parameters)
+        public ThreadsManaging(BitmapImage image, Params _parameters)
         {
             this.Threads = new List<Thread>();
             this.transformedImages = new List<IntPtr>();
-            this.parameters = parameters;
+            parameters = _parameters;
             this.imagesIntPtr = SplitImage(image, parameters.NrOfThreads);
             this.imWithIndices = new List<ImageWithIndex>();
             for (int i = 0; i < parameters.NrOfThreads; i++)
             {
                 unsafe
                 {
-                    transformedImages.Add(Marshal.AllocHGlobal(parameters.ImageHeight*imagesIntPtr[i].GetWidth()));
+                    transformedImages.Add(Marshal.AllocHGlobal(parameters.ImageHeight*imagesIntPtr[i].GetExtraWidth()));
                 }
-                imWithIndices.Add(new ImageWithIndex(imagesIntPtr[i].GetPtr(), i, imagesIntPtr[i].GetWidth()));
+                imWithIndices.Add(new ImageWithIndex(imagesIntPtr[i].GetPtr(), i, imagesIntPtr[i].GetWidth(), imagesIntPtr[i].GetExtraWidth()));
                 Thread t = new Thread(performOperation)
                 {
                     Name = "" + i
@@ -185,7 +222,7 @@ namespace OperacjeMorfologiczne
             List<IntPtrWithSize> list = new List<IntPtrWithSize>();
             for (int i = 0; i < transformedImages.Count; i++)
             {
-                list.Add(new IntPtrWithSize(transformedImages[i], imagesIntPtr[i].GetSize(), imagesIntPtr[i].GetWidth()));
+                list.Add(new IntPtrWithSize(transformedImages[i], imagesIntPtr[i].GetSize(), imagesIntPtr[i].GetWidth(), imagesIntPtr[i].GetExtraWidth()));
             }
 
             return MergeImage(list, parameters.ImageHeight);
@@ -196,12 +233,14 @@ namespace OperacjeMorfologiczne
             public IntPtr image;
             public int index;
             public int width;
+            public int extraWidth;
 
-            public ImageWithIndex(IntPtr image, int index, int width)
+            public ImageWithIndex(IntPtr image, int index, int width, int extraWidth)
             {
                 this.image = image;
                 this.index = index;
                 this.width = width;
+                this.extraWidth = extraWidth;
             }
         }
     }
