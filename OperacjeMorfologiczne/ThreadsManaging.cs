@@ -21,11 +21,11 @@ namespace OperacjeMorfologiczne
         private List<IntPtrWithSize> imagesIntPtr;
         private List<ImageWithIndex> imWithIndices;
 
-        [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\c_function\CFunction.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"CFunction.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr dilatationC(IntPtr image, IntPtr transImage, int imageWidth, int imageHeight, int elemWidth, int elemHeight, 
             int centrPntX, int centrPntY);
 
-        [DllImport(@"D:\studia\JAproj\OperacjeMorfologiczne\asm_function\asm_function.dll")]
+        [DllImport(@"asm_function.dll")]
         private static extern IntPtr dilatationAsm(IntPtr image, IntPtr transImage, int imageWidth, int imageHeight, int elemWidth, int elemHeight, 
             int centrPntX, int centrPntY);
 
