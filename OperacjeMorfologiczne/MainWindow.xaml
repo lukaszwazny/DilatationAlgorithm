@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OperacjeMorfologiczne"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
-    <Grid Height="470" Margin="0,0,-0.4,0" VerticalAlignment="Top">
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Height="470" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom">
         <!--
         <Border BorderThickness="3" BorderBrush="#FF000000">
             -->
@@ -49,6 +49,10 @@
         <RadioButton Name="AsmButton" Content="Assembler" HorizontalAlignment="Left" Margin="362,40,0,0" VerticalAlignment="Top"/>
         <Label Content="Wybór biblioteki:" HorizontalAlignment="Left" Margin="322,9,0,0" VerticalAlignment="Top"/>
         <Button x:Name="Save" Margin="705,172,9.6,265.4" Click="Save_OnClick"  Content="Zapisz" />
+        <TextBlock HorizontalAlignment="Left" Height="37" Margin="90,-91,0,0" TextWrapping="Wrap" Text="Operacje morfologiczne obrazów binarnych - algorytm dylatacji" VerticalAlignment="Top" Width="625"  FontSize="20" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="299,-49,0,0" TextWrapping="Wrap" Text="Autor: Łukasz Ważny" VerticalAlignment="Top" Width="159" FontWeight="Bold" FontSize="15"/>
+        <Button x:Name="TransformObraz_Copy" Margin="640,10,39,421" Click="ShowHistogramTransformed_OnClick"  Content="Pokaż histogram" />
+        <Button x:Name="DodajObraz_Copy" Margin="35,10,658,421" Click="ShowHistogramOriginal_OnClick" Content="Pokaż histogram " />
 
     </Grid>
 </Window>

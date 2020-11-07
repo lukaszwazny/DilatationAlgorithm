@@ -12,3 +12,6 @@ D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.Propertie
 D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.csproj.GenerateResource.cache
 D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.exe
 D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.pdb
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\Histogram.g.cs
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\Histogram.baml
+D:\studia\JAproj\OperacjeMorfologiczne\obj\Debug\OperacjeMorfologiczne.csproj.CopyComplete

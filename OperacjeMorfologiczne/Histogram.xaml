@@ -1,0 +1,33 @@
+﻿<Window x:Class="OperacjeMorfologiczne.Histogram"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:local="clr-namespace:OperacjeMorfologiczne"
+        mc:Ignorable="d"
+        Title="Histogram" Height="450" Width="450">
+    <Grid>
+        <!--<Image x:Name="HistImage" HorizontalAlignment="Left" Height="225" Margin="248,133,0,0" VerticalAlignment="Top" Width="300"/>-->
+
+        <DVC:Chart Canvas.Top="80" Canvas.Left="10" x:Name="mcChart"     
+Width="400" Height="250"    
+Background="LightSteelBlue">
+            <DVC:Chart.Series>
+                <DVC:ColumnSeries Title=""    
+IndependentValueBinding="{Binding Path=Key}"    
+DependentValueBinding="{Binding Path=Value}">
+                    <DVC:ColumnSeries.LegendItemStyle >
+                        <Style TargetType="DVC:LegendItem">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Style>
+                    </DVC:ColumnSeries.LegendItemStyle>
+                </DVC:ColumnSeries>
+            </DVC:Chart.Series>
+            </DVC:Chart>
+
+            <TextBlock x:Name="typeImage" HorizontalAlignment="Left" Margin="125,50,0,0" TextWrapping="Wrap" Text="Histogram obrazu " VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -167,6 +167,30 @@ namespace OperacjeMorfologiczne
             }
         }
 
+        private void ShowHistogramOriginal_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                new Histogram(this._originalImage, "oryginalnego").Show();
+            }
+            catch (Exception XD)
+            {
+                MessageBox.Show(XD.Message, XD.GetType().ToString());
+            }
+
+        }
+
+        private void ShowHistogramTransformed_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                new Histogram(this._transformedImage, "przetworzonego").Show();
+            }
+            catch (Exception XD)
+            {
+                MessageBox.Show(XD.Message, XD.GetType().ToString());
+            }
+        }
     }
 
     struct Params
