@@ -1,24 +1,84 @@
+ï»¿
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Temat projektu: PrzeksztaÅ‚cenia morfologiczne obrazÃ³w binarnych
+;Autor: Åukasz WaÅ¼ny
+;Przedmiot: JÄ™zyki Asemblerowe
+;Informatyka
+;Semestr: 5
+;Grupa dziekaÅ„ska: 1
+;Sekcja: 2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Changelog:
+;
+;v. 0.1 
+;Dodanie pliku asm 64 bitowym z prostym sprawdzeniem czy argumenty sÄ… przesyÅ‚ane do pliku dll, 
+;pomyÅ›lna kompilacja procedury, prÃ³ba zwracania argumentÃ³w procedury do jÄ™zyka wysokiego poziomu
+;w celu sprawdzenia, czy funkcja odpowiednio zwraca wartoÅ›ci oraz, czy argumenty sÄ… dobrze wczytane
+;
+;v. 0.2
+;Dodanie opisu procedury dilatationAsm
+;
+;v. 0.3
+;Implementacja kopiowania obrazu spod wskaÅºnika ÅºrÃ³dÅ‚owego do docelowego obszaru pamiÄ™ci
+;
+;v. 0.4
+;PoczÄ…tek implementacji algorytmu dylatacji - napisanie szkieletu, czyli dwie pÄ™tle (petla3, petla4)
+;rozpatrujÄ…ce kaÅ¼dy piksel obrazu oraz 4 instrukcje warunkowe wewnÄ…trz pÄ™tli, dla rÃ³Å¼nych przypadkÃ³w umiejscowienia
+;piksela w obrazie (gÅ‚Ã³wnie prypadki kraÅ„cowe)
+;
+;v. 0.5
+;Kontynuacja implementacji algorytmu dylatacji - stworzenie dwÃ³ch pÄ™tli wewnÄ…trz kaÅ¼dej instrukcji warunkowej,
+;ktÃ³re badajÄ…, czy w obrÄ™bie elementu strukturalnego znajduje siÄ™ przynajmniej jeden czarny piksel, a jeÅ¼eli tak
+;przypisujÄ… do badanego piksela w gÅ‚Ã³wnej pÄ™tli - wartoÅ›Ä‡ 0 (aby byÅ‚ czarny), w kaÅ¼dej instrukcji warunkowej
+;napisane pÄ™tle rÃ³Å¼niÄ… siÄ™ niezancznie ze wzglÄ™du na inne umiejscowienie na obrazie badanego piksela
+;
+;v. 0.6
+;Napotkanie problemu - przy wiÄ™kszej iloÅ›ci wÄ…tkÃ³w wystÄ™pujÄ… bÅ‚Ä™dnie obliczone piksele. Analiza bÅ‚Ä™dnie obliczonych
+;pikseli na podstawie alogytmu napisanego w C (ze wzglÄ™du na prostsze znalezienie bÅ‚edu), rozwiÄ…zanie problemu
+;poprzez manipulacjÄ™ liczby wykonanych iteracji w pÄ™tlach o wartoÅ›ci wspÃ³Å‚rzÄ™dnych punktu centralnego w elemencie
+;strukturalnym, nastÄ™pnie przepisanie dokonanych poprawek w C do procedury w asemblerze
+;
+;v. 0.7
+;Napotkanie problemu - przy wiÄ™kszych obrazach wystÄ™pujÄ… bÅ‚Ä™dnie obliczone piksele, ale tylko uÅ¼ywajÄ…c biblioteki
+;asemblerowej. RozwiÄ…zanie problemu poprzez podmianÄ™ uÅ¼ywanych instrukcji wektorowych na takie, ktÃ³re operujÄ… na 
+;wiÄ™kszych typach zmiennych (np. zmiana paddusw na paddq, psubusw na psubq)
+;
+;v.1.0
+;Ostateczne testowanie algorytmu na rÃ³Ã¦nych danych, brak wykrycia kolejnych bÅ‚Ä™dÃ³w. UporzÄ…dkowanie kodu,
+;dodanie obszerniejszych komentarzy
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+.data
+;brak danych
 
 .code
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Funkcja wykonuje algorytm dylatacji
+;Funkcja wykonuje algorytm dylatacji, poprzez badanie otoczenia kaÅ¼dego piksela, w oparciu o 
+;przekazany element strukturalny. Przypisuje wartoÅ›Ä‡ 0 (czarny piksel) do badanego piksela, jeÅ¼eli
+;w obrÄ™bie przyÅ‚oÅ¼onego do niego elementu strukturalnego w punkcie centralnym wystÄ™puje przynajmniej
+;jeden piksel o wartoÅ›ci 0 (czarny piksel)
 ;
-; @param rcx - src - wskaŸnik na tablicê pikseli obrazu Ÿród³owego
-; @param rdx - dst - wskaŸnik na tablicê pikseli obrazu docelowego
-; @param r8 - imageWidth - szerokosc obrazu
-; @param r9 - imageHeight - wysokosc obrazu
-; @param stos - elemWidth - szerokosc elementu strukturalnego
-; @param stos - elemHeight - wysokosc elementu strukturalnego
-; @param stos - centrPntX - wspolrzedna x punktu centralnego
-; @param stos - centrPntY - wspolrzedna y punktu centralnego
+; parametry wejÅ›ciowe:
+; rejestr rcx - src - wskaÅºnik na tablicÄ™ pikseli obrazu ÅºrÃ³dÅ‚owego
+; rejestr rdx - dst - wskaÅºnik na tablicÄ™ pikseli obrazu docelowego
+; rejestr r8 - imageWidth - szerokosc obrazu - zakres parametru: liczba caÅ‚kowita nieujemna
+; rejestr r9 - imageHeight - wysokosc obrazu - zakres parametru: liczba caÅ‚kowita nieujemna
+; rejestr stos - elemWidth - szerokosc elementu strukturalnego - zakres parametru: liczba caÅ‚kowita nieujemna
+; rejestr stos - elemHeight - wysokosc elementu strukturalnego - zakres parametru: liczba caÅ‚kowita nieujemna
+; rejestr stos - centrPntX - wspolrzedna x punktu centralnego - zakres parametru: liczba caÅ‚kowita nieujemna mniejsza niÅ¼ elemWidth
+; rejestr stos - centrPntY - wspolrzedna y punktu centralnego - zakres parametru: liczba caÅ‚kowita nieujemna mniejsza niÅ¼ elemHeight
 ;
-; @return wskaŸnik na tablicê pikseli obrazu docelowego
+; procedura nie niszczy rejestrÃ³w
+;
+; parametry wyjÅ›ciowe:
+; void
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 dilatationAsm PROC
 
-	;kopiowanie argumentów do rejestrów, te rejestry s¹ u¿ywane w ca³ej procedurze, gdy potrzebne jest u¿ycie danego argumentu
+	;kopiowanie argumentÃ³w do rejestrÃ³w, te rejestry sÄ… uÅ¼ywane w caÅ‚ej procedurze, gdy potrzebne jest uÅ¼ycie danego argumentu
 	movd xmm0, rcx					;skopiuj 1. argument - src - do rejestru xmm0
 	movd xmm1, rdx					;skopiuj 2. argument - dst - do rejestru xmm1
 	mov rax, r8						;skopiuj 3. argument - imageWidth - do rejestru rax
@@ -34,16 +94,16 @@ dilatationAsm PROC
 	mov eax, dword ptr[rsp+64]		;skopiuj 8. argument - centrPntY - ze stosu do rejestru rax
 	movd xmm7, eax					;skopiuj 8. argument - centrPntY - do rejestru xmm7
 	
-	;kopiowanie src do dst
-	;petla 1
+	;kopiowanie obrazu ÅºrÃ³dÅ‚owego do docelowego obszaru pamiÄ™ci (pod wskaÅºnikiem dst)
+	;petla 1 - po wierszach obrazu
 	;for(int j = 0; j < imageHeight; j++)
 	mov ecx, 0						;int j = 0
-	jmp checkIfEndOfPetla1			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla1			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla1:
-	;petla 2
+	;petla 2 - po kolumnach obrazu
 	;for(int i = 0; i < imageWidth; i++)
 	mov ebx, 0						;int i = 0
-	jmp checkIfEndOfPetla2			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla2			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla2:
 	movd xmm8, ecx					;kopiuj j do rejestru xmm8
     pmuludq xmm8, xmm2				;j*imageWidth		
@@ -54,51 +114,57 @@ petla2:
 	movd rax, xmm1					;adres dst do rax
     add rdi, rsi					;wyznacz adres kopiowanego piksela src i zapisz w rdi
 	add rax, rsi					;wyznacz adres przypisywanego piksela dst i zapisz w rax
-	mov sil, BYTE PTR [rdi]			;kopiuj wartoœæ piksela src do rejestru esi
-    mov BYTE PTR [rax], sil			;przypisz wartoœæ piksela src do piksela dst
+	mov sil, BYTE PTR [rdi]			;kopiuj wartoÅ›Ä‡ piksela src do rejestru esi
+    mov BYTE PTR [rax], sil			;przypisz wartoÅ›Ä‡ piksela src do piksela dst
 	add	ebx, 1						;i++
-checkIfEndOfPetla2:					;sprawdzanie warunku koñca pêtli 2
+checkIfEndOfPetla2:					;sprawdzanie warunku koÅ„ca pÄ™tli 2
     movd eax, xmm2					;kopiuj imageWidth do eax
-    cmp  ebx, eax					;porównaj j z imageHeight
-    jl  petla2						;skocz do pocz¹tku pêtli je¿eli i < imageWidth
+    cmp  ebx, eax					;porÃ³wnaj j z imageHeight
+    jl  petla2						;skocz do poczÄ…tku pÄ™tli jeÅ¼eli i < imageWidth
     add ecx, 1						;j++
-checkIfEndOfPetla1:					;sprawdzanie warunku koñca pêtli 1
-	movd eax, xmm3					;kopiuj imageHeight do eax
-    ;sub  eax, 1						
-    cmp  ecx, eax					;porównaj j z imageHeight
-    jl   petla1						;skocz do pocz¹tku pêtli, je¿eli j < imageHeight;
+checkIfEndOfPetla1:					;sprawdzanie warunku koÅ„ca pÄ™tli 1
+	movd eax, xmm3					;kopiuj imageHeight do eax						
+    cmp  ecx, eax					;porÃ³wnaj j z imageHeight
+    jl   petla1						;skocz do poczÄ…tku pÄ™tli, jeÅ¼eli j < imageHeight;
 
 	;algorytm dylatacji
-	;petla3
+	;pierwsze dwie pÄ™tle - badanie kaÅ¼dego piksela
+	;petla3 - po wierszach obrazu
 	;for (int h = 0; h < imageHeight; h++)
 	mov ebx, 0						;int h = 0
-	jmp checkIfEndOfPetla3			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla3			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla3:
-	;petla4
+	;petla4 - po kolumnach obrazu
 	;for (int w = 0; w < imageWidth; w++)
 	mov ecx, 0						;int w = 0
-	jmp checkIfEndOfPetla4			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla4			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla4:
-
+	
+	;przypadek szczegÃ³lny nr 1 - gdy piksel jest blisko lewego gÃ³rnego rogu obrazu
+	;w tym przypadku element strukturalny wychodzi z lewej i gÃ³rnej strony poza obszar obrazu
 	;if (h < centrPntY && w < centrPntX)
 	movd eax, xmm7					;kopiuj centrPntY do eax
-	cmp ebx, eax					;porównaj h z centrPntY
-	ja nIf2							;je¿eli h < centrPntY skocz do If2
+	cmp ebx, eax					;porÃ³wnaj h z centrPntY
+	ja nIf2							;jeÅ¼eli h < centrPntY skocz do If2
 	movd eax, xmm6					;kopiuj centrPntX do eax
-	cmp ecx, eax					;porównaj w z centrPntX
-	ja nIf2							;je¿eli w < centrPntX skocz do If2
+	cmp ecx, eax					;porÃ³wnaj w z centrPntX
+	ja nIf2							;jeÅ¼eli w < centrPntX skocz do If2
 
+	;dwie pÄ™tle badajÄ…ce otoczenie piksela w tym przypadku
 	mov edx, 0						;int czy_jest = 0
+	;petla5 - po wierszach elementu strukturalnego
 	;for (int j = 0; j < elemHeight - h && h + j < imageHeight && !czy_jest; j++)
 	mov esi, 0						;int j = 0
-	jmp checkIfEndOfPetla5			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla5			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla5:
 	
+	;petla6 - po kolumnach elementu strukturalnego
 	;for (int i = 0; i < elemWidth - w && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
-	jmp checkIfEndOfPetla6			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla6			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla6:
 
+	;sprawdzenie czy dany piksel jest czarny
 	;if (image[i + j * imageWidth] < 10)
 	movd xmm8, esi					;kopiuj j do rejestru xmm8
 	pmuludq xmm8, xmm2				;j*imageWidth	
@@ -107,10 +173,11 @@ petla6:
 	movd rax, xmm9					;rax = i + i*imageWidth
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
-	mov al, BYTE PTR [rdi]			;kopiuj wartoœæ piksela src do rejestru al
-	cmp al, 9						;porównaj wartoœæ piksela src z 9
-	ja koniecPetli6					; je¿eli piksel src >=10 skocz na koniec petli 6
+	mov al, BYTE PTR [rdi]			;kopiuj wartoÅ›Ä‡ piksela src do rejestru al
+	cmp al, 9						;porÃ³wnaj wartoÅ›Ä‡ piksela src z 9
+	ja koniecPetli6					; jeÅ¼eli piksel src >=10 skocz na koniec petli 6
 
+	;jeÅ¼eli znaleziono czarny piksel - przypisanie wartoÅ›ci 0 do badanego piksela
 	mov edx, 1						;czy_jest = 1
 	;buffer[w + h * imageWidth] = 0;
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
@@ -122,57 +189,65 @@ petla6:
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
 	mov BYTE PTR [rdi], 0			;przypisz 0 do piksela dst
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli6
 koniecPetli6:
 	add r8d, 1						;i++
 checkIfEndOfPetla6:
 	movd eax, xmm4					;koiuj elemWidth do eax
 	sub eax, ecx					;elemWidth - w
-	cmp r8d, eax					;porównaj i z (elemWIdth - w)
-	jge koniecPetli5				;je¿eli i > (elemWidth - w) skocz na koniec petli 5
+	cmp r8d, eax					;porÃ³wnaj i z (elemWIdth - w)
+	jge koniecPetli5				;jeÅ¼eli i > (elemWidth - w) skocz na koniec petli 5
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
 	movd edi, xmm6					;kopiuj centrPntX do edi
 	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
-	jle koniecPetli5				;je¿eli i+w-centrPntX>imageHeight skocz na koniec petli 5
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla6						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
+	cmp edi, eax					;porÃ³wnaj imageWidth z (i+w-centrPntX)
+	jle koniecPetli5				;jeÅ¼eli i+w-centrPntX>imageHeight skocz na koniec petli 5
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla6						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli5
 koniecPetli5:
 	add esi, 1						;j++
 checkIfEndOfPetla5:
 	movd eax, xmm5					;kopiuj elemHeight do eax
 	sub eax, ebx					;elemHeight - h
-	cmp esi, eax					;porównaj j z (elemHeight - h)
-	jge endOfPetla4					;je¿eli j >= (elemHeight - h) skocz na koniec petli 4
+	cmp esi, eax					;porÃ³wnaj j z (elemHeight - h)
+	jge endOfPetla4					;jeÅ¼eli j >= (elemHeight - h) skocz na koniec petli 4
 	mov eax, esi					;kopiuj j do eax
 	add eax, ebx					;j + h
 	movd edi, xmm3					;kopiuj imageHeight do edi
-	cmp edi, eax					;porównaj imageHeight z (j+h)
-	jle endOfPetla4					;je¿eli h+j>imageHeight skocz na koniec petli 4
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla5						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
-	jmp endOfPetla4					;je¿eli czy_jest = 0 skocz na koniec petli 4
+	cmp edi, eax					;porÃ³wnaj imageHeight z (j+h)
+	jle endOfPetla4					;jeÅ¼eli h+j>imageHeight skocz na koniec petli 4
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla5						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
+	jmp endOfPetla4					;jeÅ¼eli czy_jest = 0 skocz na koniec petli 4
 
+	;przypadek szczegÃ³lny nr 2 - gdy piksel jest blisko lewej strony obrazu
+	;w tym przypadku element strukturalny wychodzi z lewej strony poza obszar obrazu
 	;else
 	;if (h < centrPntY)
 nIf2:
 	movd eax, xmm7					;kopiuj centrPntY do eax
-	cmp ebx, eax					;porównaj h z centrPntY
-	ja nIf3							;je¿eli h < centrPntY skocz do If3
+	cmp ebx, eax					;porÃ³wnaj h z centrPntY
+	ja nIf3							;jeÅ¼eli h < centrPntY skocz do If3
 
+	;dwie pÄ™tle badajÄ…ce otoczenie piksela w tym przypadku
 	mov edx, 0						;int czy_jest = 0
+	;petla7 - po wierszach elementu strukturalnego
 	;for (int j = 0; j < elemHeight + h - centrPntX && h + j < imageHeight && !czy_jest; j++)
 	mov esi, 0						;int j = 0
-	jmp checkIfEndOfPetla7			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla7			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla7:
 	
+	;petla8 - po kolumnach elementu strukturalnego
 	;for (int i = 0; i < elemWidth && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
-	jmp checkIfEndOfPetla8			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla8			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla8:
 
+	;sprawdzenie czy dany piksel jest czarny
 	;if (image[w - centrPntX + i + j * imageWidth] < 10)
 	mov eax, ecx					;kopiuj w do eax
 	movd edi, xmm6					;kopiuj centrPntX do edi
@@ -185,10 +260,11 @@ petla8:
 	movd rax, xmm9					;rax = (w - centrPntX + i) + (j*imageWidth)
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
-	mov al, BYTE PTR [rdi]			;kopiuj wartoœæ piksela src do rejestru al
-	cmp al, 9						;porównaj wartoœæ piksela src z 9
-	ja koniecPetli8					; je¿eli piksel src >=10 skocz na koniec petli 6
+	mov al, BYTE PTR [rdi]			;kopiuj wartoÅ›Ä‡ piksela src do rejestru al
+	cmp al, 9						;porÃ³wnaj wartoÅ›Ä‡ piksela src z 9
+	ja koniecPetli8					; jeÅ¼eli piksel src >=10 skocz na koniec petli 6
 
+	;jeÅ¼eli znaleziono czarny piksel - przypisanie wartoÅ›ci 0 do badanego piksela
 	mov edx, 1						;czy_jest = 1
 	;buffer[w + h * imageWidth] = 0;
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
@@ -201,22 +277,24 @@ petla8:
 	mov BYTE PTR [rdi], 0			;przypisz 0 do piksela dst
 
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli8
 koniecPetli8:
 	add r8d, 1						;i++
 checkIfEndOfPetla8:
 	movd eax, xmm4					;koiuj elemWidth do eax
-	cmp r8d, eax					;porównaj i z elemWIdth
-	jge koniecPetli7				;je¿eli i > elemWidth skocz na koniec petli 7
+	cmp r8d, eax					;porÃ³wnaj i z elemWIdth
+	jge koniecPetli7				;jeÅ¼eli i > elemWidth skocz na koniec petli 7
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
 	movd edi, xmm6					;kopiuj centrPntX do edi
 	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
-	jle koniecPetli7				;je¿eli i+w-centrPntX>imageHeight skocz na koniec petli 7
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla8						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
+	cmp edi, eax					;porÃ³wnaj imageWidth z (i+w-centrPntX)
+	jle koniecPetli7				;jeÅ¼eli i+w-centrPntX>imageHeight skocz na koniec petli 7
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla8						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli7
 koniecPetli7:
 	add esi, 1						;j++
 checkIfEndOfPetla7:
@@ -224,34 +302,40 @@ checkIfEndOfPetla7:
 	add eax, ebx					;elemHeight + h
 	movd edi, xmm7					;kopiuj centrPntY do edi
 	sub eax, edi					;(elemHeight + h) - centrPntY
-	cmp esi, eax					;porównaj j z (elemHeight + h - centrPntY)
-	jge endOfPetla4					;je¿eli j >= (elemHeight + h - centrPntY) skocz na koniec petli 4
+	cmp esi, eax					;porÃ³wnaj j z (elemHeight + h - centrPntY)
+	jge endOfPetla4					;jeÅ¼eli j >= (elemHeight + h - centrPntY) skocz na koniec petli 4
 	mov eax, esi					;kopiuj j do eax
 	add eax, ebx					;j + h
 	movd edi, xmm3					;kopiuj imageHeight do edi
-	cmp edi, eax					;porównaj imageHeight z (j+h)
-	jle endOfPetla4					;je¿eli h+j>imageHeight skocz na koniec petli 4
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla7						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
-	jmp endOfPetla4					;je¿eli czy_jest = 0 skocz na koniec petli 4
+	cmp edi, eax					;porÃ³wnaj imageHeight z (j+h)
+	jle endOfPetla4					;jeÅ¼eli h+j>imageHeight skocz na koniec petli 4
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla7						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
+	jmp endOfPetla4					;jeÅ¼eli czy_jest = 0 skocz na koniec petli 4
 
+	;przypadek szczegÃ³lny nr 3 - gdy piksel jest blisko gÃ³rnej strony obrazu
+	;w tym przypadku element strukturalny wychodzi z gÃ³rnej strony poza obszar obrazu
 	;else if (w < centrPntX)
 nIf3:
 	movd eax, xmm6					;kopiuj centrPntX do eax
-	cmp ecx, eax					;porównaj w z centrPntX
-	ja nIf4							;je¿eli w > centrPntX skocz do If4	
+	cmp ecx, eax					;porÃ³wnaj w z centrPntX
+	ja nIf4							;jeÅ¼eli w > centrPntX skocz do If4	
 	
+	;dwie pÄ™tle badajÄ…ce otoczenie piksela w tym przypadku
 	mov edx, 0						;int czy_jest = 0
+	;petla9 - po wierszach elementu strukturalnego
 	;for (int j = 0; j < elemHeight && h + j < imageHeight && !czy_jest; j++)
 	mov esi, 0						;int j = 0
-	jmp checkIfEndOfPetla9			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla9			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla9:
 	
+	;petla10 - po kolumnach elementu strukturalnego
 	;for (int i = 0; i < elemWidth + w - centrPntX && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
-	jmp checkIfEndOfPetla10			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla10			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla10:
 
+	;sprawdzenie czy dany piksel jest czarny
 	;if (image[h * imageWidth - imageWidth * centrPntY + i + j * imageWidth] < 10)
 	movd xmm8, esi					;kopiuj j do rejestru xmm8
 	pmuludq xmm8, xmm2				;j*imageWidth
@@ -267,10 +351,11 @@ petla10:
 	movd rax, xmm9					;rax = h*imageWidth + i + j*imageWidth - imageWidth * centrPntY
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
-	mov al, BYTE PTR [rdi]			;kopiuj wartoœæ piksela src do rejestru al
-	cmp al, 9						;porównaj wartoœæ piksela src z 9
-	ja koniecPetli10				; je¿eli piksel src >=10 skocz na koniec petli 10
+	mov al, BYTE PTR [rdi]			;kopiuj wartoÅ›Ä‡ piksela src do rejestru al
+	cmp al, 9						;porÃ³wnaj wartoÅ›Ä‡ piksela src z 9
+	ja koniecPetli10				; jeÅ¼eli piksel src >=10 skocz na koniec petli 10
 
+	;jeÅ¼eli znaleziono czarny piksel - przypisanie wartoÅ›ci 0 do badanego piksela
 	mov edx, 1						;czy_jest = 1
 	;buffer[w + h * imageWidth] = 0;
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
@@ -282,6 +367,7 @@ petla10:
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
 	mov BYTE PTR [rdi], 0			;przypisz 0 do piksela dst
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli10
 koniecPetli10:
 	add r8d, 1						;i++
 checkIfEndOfPetla10:
@@ -289,47 +375,54 @@ checkIfEndOfPetla10:
 	add eax, ecx					;elemWidth + w
 	movd edi, xmm6					;kopiuj centrPntX do edi
 	sub eax, edi					;elemWidth + w - centrPntX
-	cmp r8d, eax					;porównaj i z (elemWidth + w - centrPntX)
-	jge koniecPetli9				;je¿eli i > (elemWidth - w) skocz na koniec petli 5
+	cmp r8d, eax					;porÃ³wnaj i z (elemWidth + w - centrPntX)
+	jge koniecPetli9				;jeÅ¼eli i > (elemWidth - w) skocz na koniec petli 5
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
 	movd edi, xmm6					;kopiuj centrPntX do edi
 	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
-	jle koniecPetli9				;je¿eli i+w>imageHeight skocz na koniec petli 5
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla10						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
+	cmp edi, eax					;porÃ³wnaj imageWidth z (i+w-centrPntX)
+	jle koniecPetli9				;jeÅ¼eli i+w>imageHeight skocz na koniec petli 5
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla10						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli9
 koniecPetli9:
 	add esi, 1						;j++
 checkIfEndOfPetla9:
 	movd eax, xmm5					;kopiuj elemHeight do eax
-	cmp esi, eax					;porównaj j z elemHeight
-	jge endOfPetla4					;je¿eli j >= (elemHeight - h) skocz na koniec petli 4
+	cmp esi, eax					;porÃ³wnaj j z elemHeight
+	jge endOfPetla4					;jeÅ¼eli j >= (elemHeight - h) skocz na koniec petli 4
 	mov eax, esi					;kopiuj j do eax
 	add eax, ebx					;j + h
 	movd edi, xmm3					;kopiuj imageHeight do edi
-	cmp edi, eax					;porównaj imageHeight z (j+h)
-	jle endOfPetla4					;je¿eli h+j>imageHeight skocz na koniec petli 4
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla9						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
-	jmp endOfPetla4					;je¿eli czy_jest = 0 skocz na koniec petli 4
+	cmp edi, eax					;porÃ³wnaj imageHeight z (j+h)
+	jle endOfPetla4					;jeÅ¼eli h+j>imageHeight skocz na koniec petli 4
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla9						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
+	jmp endOfPetla4					;jeÅ¼eli czy_jest = 0 skocz na koniec petli 4
 	
+	;pozostaÅ‚e przypadki - gdy piksel nie jest blisko gÃ³rnej ani lewej strony obrazu
+	;w tym przypadku element strukturalny mieÅ›ci siÄ™ w obrÄ™bie obrazu
 	;else
 nIf4:
 	
+	;dwie pÄ™tle badajÄ…ce otoczenie piksela w tym przypadku
 	mov edx, 0						;int czy_jest = 0
+	;petla11 - po wierszach elementu strukturalnego
 	;for (int j = 0; j < elemHeight && h + j < imageHeight && !czy_jest; j++)
 	mov esi, 0						;int j = 0
-	jmp checkIfEndOfPetla11			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla11			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla11:
 	
+	;petla12 - po kolumnach elementu strukturalnego
 	;for (int i = 0; i < elemWidth && w + i - centrPntX < imageWidth && !czy_jest; i++)
 	mov r8d, 0						;int i = 0
-	jmp checkIfEndOfPetla12			;skok do sprawdzania warunków koñca pêtli
+	jmp checkIfEndOfPetla12			;skok do sprawdzania warunkÃ³w koÅ„ca pÄ™tli
 petla12:
 
+	;sprawdzenie czy dany piksel jest czarny
 	;if (image[w + h * imageWidth - imageWidth * centrPntY - centrPntX + i + j * imageWidth] < 10)
 	movd xmm8, esi					;kopiuj j do rejestru xmm8
 	pmuludq xmm8, xmm2				;j*imageWidth
@@ -348,10 +441,11 @@ petla12:
 	movd rax, xmm9					;rax = h*imageWidth + i + j*imageWidth - imageWidth * centrPntY - centrPntX + w
 	movd rdi, xmm0					;adres src do rdi
 	add rdi, rax					;wyznacz adres piksela src i zapisz w rdi
-	mov al, BYTE PTR [rdi]			;kopiuj wartoœæ piksela src do rejestru al
-	cmp al, 9						;porównaj wartoœæ piksela src z 9
-	ja koniecPetli12				; je¿eli piksel src >=10 skocz na koniec petli 10
+	mov al, BYTE PTR [rdi]			;kopiuj wartoÅ›Ä‡ piksela src do rejestru al
+	cmp al, 9						;porÃ³wnaj wartoÅ›Ä‡ piksela src z 9
+	ja koniecPetli12				; jeÅ¼eli piksel src >=10 skocz na koniec petli 10
 
+	;jeÅ¼eli znaleziono czarny piksel - przypisanie wartoÅ›ci 0 do badanego piksela
 	mov edx, 1						;czy_jest = 1
 	;buffer[w + h * imageWidth] = 0;
 	movd xmm8, ebx					;kopiuj h do rejestru xmm8
@@ -363,49 +457,53 @@ petla12:
 	add rdi, rax					;wyznacz adres piksela dst i zapisz w rdi
 	mov BYTE PTR [rdi], 0			;przypisz 0 do piksela dst
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli12
 koniecPetli12:
 	add r8d, 1						;i++
 checkIfEndOfPetla12:
 	movd eax, xmm4					;kopiuj elemWidth do eax
-	cmp r8d, eax					;porównaj i z elemWidth
-	jge koniecPetli11				;je¿eli i > elemWidth skocz na koniec petli 5
+	cmp r8d, eax					;porÃ³wnaj i z elemWidth
+	jge koniecPetli11				;jeÅ¼eli i > elemWidth skocz na koniec petli 5
 	mov eax, r8d					;kopiuj i do eax
 	add eax, ecx					;i + w
 	movd edi, xmm6					;kopiuj centrPntX do edi
 	sub eax, edi					;(i+w) - centrPntX
 	movd edi, xmm2					;kopiuj imageWidth do edi
-	cmp edi, eax					;porównaj imageWidth z (i+w-centrPntX)
-	jle koniecPetli11				;je¿eli i+w>imageHeight skocz na koniec petli 5
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla12						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
+	cmp edi, eax					;porÃ³wnaj imageWidth z (i+w-centrPntX)
+	jle koniecPetli11				;jeÅ¼eli i+w>imageHeight skocz na koniec petli 5
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla12						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli11
 koniecPetli11:
 	add esi, 1						;j++
 checkIfEndOfPetla11:
 	movd eax, xmm5					;kopiuj elemHeight do eax
-	cmp esi, eax					;porównaj j z elemHeight
-	jge endOfPetla4					;je¿eli j >= elemHeight skocz na koniec petli 4
+	cmp esi, eax					;porÃ³wnaj j z elemHeight
+	jge endOfPetla4					;jeÅ¼eli j >= elemHeight skocz na koniec petli 4
 	mov eax, esi					;kopiuj j do eax
 	add eax, ebx					;j + h
 	movd edi, xmm3					;kopiuj imageHeight do edi
-	cmp edi, eax					;porównaj imageHeight z (j+h)
-	jle endOfPetla4					;je¿eli h+j>imageHeight skocz na koniec petli 4
-	cmp edx, 0						;porównaj czy_jest z 0
-	je petla11						;je¿eli czy_jest!=0 skocz na pocz¹tek petli
-	jmp endOfPetla4					;je¿eli czy_jest = 0 skocz na koniec petli 4
+	cmp edi, eax					;porÃ³wnaj imageHeight z (j+h)
+	jle endOfPetla4					;jeÅ¼eli h+j>imageHeight skocz na koniec petli 4
+	cmp edx, 0						;porÃ³wnaj czy_jest z 0
+	je petla11						;jeÅ¼eli czy_jest!=0 skocz na poczÄ…tek petli
+	jmp endOfPetla4					;jeÅ¼eli czy_jest = 0 skocz na koniec petli 4
 
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli4
 endOfPetla4:
 	add ecx, 1						;w++
-checkIfEndOfPetla4:					;sprawdzanie warunku koñca pêtli 4
+checkIfEndOfPetla4:					;sprawdzanie warunku koÅ„ca pÄ™tli 4
 	movd eax, xmm2					;kopiuj imageWidth do eax
-	cmp ecx, eax					;porównaj w z imageWidth
-	jl petla4						;skocz do pocz¹tku pêtli, je¿eli w < imageWidth;
+	cmp ecx, eax					;porÃ³wnaj w z imageWidth
+	jl petla4						;skocz do poczÄ…tku pÄ™tli, jeÅ¼eli w < imageWidth;
 	
+	;sprawdzenie warunkÃ³w wyjÅ›cia z petli3
 	add ebx, 1						;h++
-checkIfEndOfPetla3:					;sprawdzanie warunku koñca pêtli 3
+checkIfEndOfPetla3:					;sprawdzanie warunku koÅ„ca pÄ™tli 3
 	movd eax, xmm3					;kopiuj imageHeight do eax
-	cmp ebx, eax					;porównaj h z imageHeight
-	jl petla3						;skocz do pocz¹tku pêtli, je¿eli h < imageHeight;
+	cmp ebx, eax					;porÃ³wnaj h z imageHeight
+	jl petla3						;skocz do poczÄ…tku pÄ™tli, jeÅ¼eli h < imageHeight;
 
 
 	ret 
