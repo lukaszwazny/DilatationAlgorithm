@@ -109,7 +109,7 @@ namespace OperacjeMorfologiczne
                     byte average = (byte) ((bmp.GetPixel(x, y).R + bmp.GetPixel(x, y).G + bmp.GetPixel(x, y).B) / 3);
                     if (average > 125)
                         array[y * bmp.Width + x] = 255;
-                    else
+                    else`
                         array[y * bmp.Width + x] = 0;
                 }
             }
